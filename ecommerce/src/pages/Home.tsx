@@ -1,14 +1,12 @@
-import { InfoBar } from '../components/InfoBar'
-import { NavBar } from '../components/NavBar'
-
+import { HeroSection } from '../layouts/HeroSection'
+import { ShopCards } from '../layouts/ShopCards'
 
 export const Home = () => {
 
-
   return (
     <div className='h-full font-montserrat'>
-        <InfoBar/>
-        <NavBar/>      
+        <HeroSection />
+        <ShopCards />
     </div>
   )
 }

@@ -6,7 +6,7 @@ import {faEnvelope} from '@fortawesome/free-regular-svg-icons';
 export const InfoBar = () => {
   return (
     <>
-        <div className='flex flex-row w-full h-[8.05vh] justify-between items-center bg-slate-800 text-white text-lg px-12'>
+        <div className='hidden xl:flex flex-row w-full h-[8.05vh] justify-between items-center font-montserrat text-lg bg-slate-800 text-white text-lg px-12'>
             <div className='flex flex-row justify-between gap-10'>
                 <p><FontAwesomeIcon icon={faPhone}/> (225 555-0118)</p>
                 <p><FontAwesomeIcon icon={faEnvelope} /> michelle.rivera@example.com</p>
