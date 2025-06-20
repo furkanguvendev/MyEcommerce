@@ -11,6 +11,7 @@
   object-fit: cover;
   object-position: 58% center;
   flex-shrink: 0;
+  aspect-ratio: 16/8;
 }
 
 .carousel-button {
