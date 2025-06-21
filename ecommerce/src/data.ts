@@ -4,6 +4,9 @@ import Picture3 from "./assets/homeslide3.png";
 import Picture4 from "./assets/productslide4.png";
 import Picture5 from "./assets/productslide5.png";
 import Picture6 from "./assets/productslide6.png";
+import Picture7 from "./assets/blogpic1.png";
+import Picture8 from "./assets/blogpic2.png";
+import Picture9 from "./assets/blogpic3.png";
 
 export type CarouselData = {
 pictures: {
@@ -32,9 +35,20 @@ pictures: {
   button: string;
 }
 
+export type BlogCard = {
+  picture: string;
+  text1: string;
+  text2: string;
+  time: string;
+  interaction: string;
+}
+
+export type BlogData = BlogCard[];
+
 export type AllData = {
   heroCaroseul: CarouselData;
   productCarousel: CarouselData;
+  blogCard: BlogData;
 }
 
 const data: AllData = {
@@ -82,7 +96,7 @@ const data: AllData = {
     text1: "SUMMER 2025",
     text2: {
       mobile: "Vita Classic\nProduct",
-      desktop: "Vita Classic\nProduct",
+      desktop: "Vita Classic Product",
     },
     text3: {
       mobile: "We know how large objects\nwill act, We know how are objects\nwill act, We know",
@@ -90,6 +104,29 @@ const data: AllData = {
     },
     button: "ADD TO CART",
   },
+  blogCard : [
+    {
+      picture: Picture7,
+      text1: "Loudest à la Madison #1\n(L'integral)",
+      text2: "We focus on ergonomics and meeting\nyou where you work. It's only a\nkeystroke away.",
+      time: "12 May 2025",
+      interaction: "95",
+    },
+    {
+      picture: Picture8,
+      text1: "Loudest à la Madison #1\n(L'integral)",
+      text2: "We focus on ergonomics and meeting\nyou where you work. It's only a\nkeystroke away.",
+      time: "26 March 2024",
+      interaction: "222",
+    },
+    {
+      picture: Picture9,
+      text1: "Loudest à la Madison #1\n(L'integral)",
+      text2: "We focus on ergonomics and meeting\nyou where you work. It's only a\nkeystroke away.",
+      time: "8 April 2023",
+      interaction: "125",
+    },
+  ]
 };
 
 

@@ -8,3 +8,11 @@
   height: 100%;
   text-align: center;
 }
+
+.footer-heading {
+  @apply text-slate-800 text-base font-bold pb-5;
+}
+
+.footer-p {
+  @apply text-neutral-500 text-sm font-bold pb-3;
+}
