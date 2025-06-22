@@ -5,7 +5,7 @@ import data from "../data";
 
 export const HeroSection = () => {
   return (
-    <div className='h-full'>
+    <div className='w-full h-full flex flex-col justify-center items-center'>
         <InfoBar/>
         <NavBar/>
         <Carousel key={3} {...data.heroCaroseul}/>
