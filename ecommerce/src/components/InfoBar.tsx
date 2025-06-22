@@ -6,13 +6,15 @@ import {faEnvelope} from '@fortawesome/free-regular-svg-icons';
 export const InfoBar = () => {
   return (
     <>
-        <div className='hidden xl:flex flex-row w-full h-[8.05vh] justify-between items-center font-montserrat text-lg bg-slate-800 text-white text-lg px-12'>
+        <div className='max-xl:hidden w-full h-[8.05vh] bg-slate-800 flex justify-center'>
+          <div className='w-11/12 h-full flex flex-row justify-between items-center font-montserrat text-lg text-white'> 
             <div className='flex flex-row justify-between gap-10'>
-                <p><FontAwesomeIcon icon={faPhone}/> (225 555-0118)</p>
-                <p><FontAwesomeIcon icon={faEnvelope} /> michelle.rivera@example.com</p>
+                <p className='flex flex-row items-center gap-1'><FontAwesomeIcon icon={faPhone}/> (225 555-0118)</p>
+                <p className='flex flex-row items-center gap-1'><FontAwesomeIcon icon={faEnvelope} /> michelle.rivera@example.com</p>
             </div>
             <p>Follow Us and get a chance to win 80% off</p>
             <p className='flex flex-row gap-5 items-center'>Follow Us&nbsp; : <div className='flex flex-row gap-3'><FontAwesomeIcon icon={faInstagram} /> <FontAwesomeIcon icon={faYoutube} /> <FontAwesomeIcon icon={faSquareFacebook} /> <FontAwesomeIcon icon={faXTwitter} /></div></p>
+          </div>
         </div>
     </>
   )

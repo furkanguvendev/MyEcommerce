@@ -7,6 +7,23 @@ import Picture6 from "./assets/productslide6.png";
 import Picture7 from "./assets/blogpic1.png";
 import Picture8 from "./assets/blogpic2.png";
 import Picture9 from "./assets/blogpic3.png";
+import Filter1 from "./assets/shopfilter1.jpg";
+import Filter2 from "./assets/shopfilter2.jpg";
+import Filter3 from "./assets/shopfilter3.jpg";
+import Filter4 from "./assets/shopfilter4.jpg";
+import Filter5 from "./assets/shopfilter5.jpg";
+import Product1 from "./assets/productcard1.png";
+import Product2 from "./assets/productcard2.png";
+import Product3 from "./assets/productcard3.png";
+import Product4 from "./assets/productcard4.png";
+import Product5 from "./assets/productcard5.png";
+import Product6 from "./assets/productcard6.png";
+import Product7 from "./assets/productcard7.png";
+import Product8 from "./assets/productcard8.png";
+import Product9 from "./assets/productcard9.png";
+import Product10 from "./assets/productcard10.png";
+import Product11 from "./assets/productcard11.png";
+import Product12 from "./assets/productcard12.png";
 
 export type CarouselData = {
 pictures: {
@@ -49,6 +66,8 @@ export type AllData = {
   heroCaroseul: CarouselData;
   productCarousel: CarouselData;
   blogCard: BlogData;
+  shopFilter: string[];
+  productCard: string[];
 }
 
 const data: AllData = {
@@ -126,7 +145,9 @@ const data: AllData = {
       time: "8 April 2023",
       interaction: "125",
     },
-  ]
+  ],
+  shopFilter: [Filter1, Filter2, Filter3, Filter4, Filter5],
+  productCard: [Product1, Product2, Product3, Product4, Product5, Product6, Product7, Product8, Product9, Product10, Product11, Product12],
 };
 
 
