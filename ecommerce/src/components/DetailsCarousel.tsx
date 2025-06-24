@@ -30,17 +30,17 @@ const DetailsCarousel: React.FC<Props> = ({ pictures, miniPictures }) => {
         {/* Sol Buton */}
         <button
           onClick={prevImage}
-          className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white/70 p-2 rounded-full hover:bg-white"
+          className="absolute top-1/2 left-2 transform -translate-y-1/2 p-2 rounded-full text-white"
         >
-          <SlArrowLeft size={24} />
+          <SlArrowLeft size={48} />
         </button>
 
         {/* Sağ Buton */}
         <button
           onClick={nextImage}
-          className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white/70 p-2 rounded-full hover:bg-white"
+          className="absolute top-1/2 right-2 transform -translate-y-1/2 p-2 rounded-full text-white"
         >
-          <SlArrowRight size={24} />
+          <SlArrowRight size={48} />
         </button>
       </div>
 
