@@ -24,6 +24,10 @@ import Product9 from "./assets/productcard9.png";
 import Product10 from "./assets/productcard10.png";
 import Product11 from "./assets/productcard11.png";
 import Product12 from "./assets/productcard12.png";
+import Details1 from "./assets/detailsCard1.jpg";
+import Details2 from "./assets/detailsCard2.jpg";
+import DetailsMini1 from "./assets/detailsCardMini1.jpg";
+import DetailsMini2 from "./assets/detailsCardMini2.jpg";
 
 export type CarouselData = {
 pictures: {
@@ -62,12 +66,23 @@ export type BlogCard = {
 
 export type BlogData = BlogCard[];
 
+export type ProductDetail = {
+  pictures: string[];
+  miniPictures: string[];
+  heading: string;
+  ratings: number[];
+  price: string;
+  avalibility: string;
+  description: string;
+}
+
 export type AllData = {
   heroCaroseul: CarouselData;
   productCarousel: CarouselData;
   blogCard: BlogData;
   shopFilter: string[];
   productCard: string[];
+  productDetails: ProductDetail;
 }
 
 const data: AllData = {
@@ -148,6 +163,15 @@ const data: AllData = {
   ],
   shopFilter: [Filter1, Filter2, Filter3, Filter4, Filter5],
   productCard: [Product1, Product2, Product3, Product4, Product5, Product6, Product7, Product8, Product9, Product10, Product11, Product12],
+  productDetails: {
+      pictures: [Details1, Details2],
+      miniPictures: [DetailsMini1, DetailsMini2],
+      heading: "Floating Phone",
+      ratings: [4, 5, 5, 4, 2, 1, 3, 5, 4, 4],
+      price: "1,139.33",
+      avalibility: "in Stock",
+      description: "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met."
+    }
 };
 
 
