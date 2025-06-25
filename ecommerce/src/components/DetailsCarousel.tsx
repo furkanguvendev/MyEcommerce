@@ -53,7 +53,7 @@ const DetailsCarousel: React.FC<Props> = ({ pictures, miniPictures }) => {
             alt={`Thumbnail ${idx}`}
             onClick={() => setCurrentIndex(idx)}
             className={`w-24 xl:w-32 aspect-[4/3] relative object-cover rounded-md cursor-pointer border-2 ${
-              idx === currentIndex ? "border-blue-500" : "border-transparent"
+              idx === currentIndex ? "border-neutral-500" : "border-transparent"
             }`}
           />
         ))}
