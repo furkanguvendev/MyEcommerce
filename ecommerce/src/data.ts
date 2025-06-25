@@ -28,6 +28,16 @@ import Details1 from "./assets/detailsCard1.jpg";
 import Details2 from "./assets/detailsCard2.jpg";
 import DetailsMini1 from "./assets/detailsCardMini1.jpg";
 import DetailsMini2 from "./assets/detailsCardMini2.jpg";
+import DescripPic from "./assets/DescriptionPic.png";
+import DetailPic1 from "./assets/detailproduct1.png";
+import DetailPic2 from "./assets/detailproduct2.png";
+import DetailPic3 from "./assets/detailproduct3.png";
+import DetailPic4 from "./assets/detailproduct4.png";
+import DetailPic5 from "./assets/detailproduct5.png";
+import DetailPic6 from "./assets/detailproduct6.png";
+import DetailPic7 from "./assets/detailproduct7.png";
+import DetailPic8 from "./assets/detailproduct8.png";
+
 
 export type CarouselData = {
 pictures: {
@@ -66,14 +76,46 @@ export type BlogCard = {
 
 export type BlogData = BlogCard[];
 
+export type Reviews = {
+  description: string;
+  raiting: number;
+}
+
+export type Descriptions = {
+  heading : string;
+  description: string;
+  descriptions: {
+    picture: string;
+    section1:{
+      heading: string;
+      descriptions: string[];
+    };
+    section2: {
+      heading: string;
+      descriptions: string[];
+    };
+    section3: {
+      heading: string;
+      descriptions: string[];
+    };
+  };
+}
+
 export type ProductDetail = {
   pictures: string[];
   miniPictures: string[];
-  heading: string;
-  ratings: number[];
+  reviews: Reviews[];
   price: string;
   avalibility: string;
-  description: string;
+  content: Descriptions;
+}
+
+export type DetailProduct = {
+  picture: string;
+  heading: string;
+  text: string;
+  price: string;
+  discount: string;
 }
 
 export type AllData = {
@@ -83,6 +125,7 @@ export type AllData = {
   shopFilter: string[];
   productCard: string[];
   productDetails: ProductDetail;
+  detailproducts: DetailProduct[];
 }
 
 const data: AllData = {
@@ -166,12 +209,105 @@ const data: AllData = {
   productDetails: {
       pictures: [Details1, Details2],
       miniPictures: [DetailsMini1, DetailsMini2],
-      heading: "Floating Phone",
-      ratings: [4, 5, 5, 4, 2, 1, 3, 5, 4, 4],
+      content: {
+          heading : "Floating Phone",
+          description: "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.",
+          descriptions: {
+            picture: DescripPic,
+            section1:{
+              heading: "the quick fox jumps over",
+              descriptions: [
+                "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.",
+                "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.",
+                "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met."
+              ],
+            },
+            section2: {
+              heading: "the quick fox jumps over",
+              descriptions: [
+                "the quick fox jumps over the lazy dog",
+                "the quick fox jumps over the lazy dog",
+                "the quick fox jumps over the lazy dog",
+                "the quick fox jumps over the lazy dog",
+              ],
+            },
+            section3: {
+              heading: "the quick fox jumps over",
+              descriptions: [
+                "the quick fox jumps over the lazy dog",
+                "the quick fox jumps over the lazy dog",
+                "the quick fox jumps over the lazy dog",
+              ],
+            },
+          },
+      },
+      reviews: [
+        {
+          description: "",
+          raiting: 4,
+        }
+      ],
       price: "1,139.33",
       avalibility: "in Stock",
-      description: "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met."
-    }
+    },
+    detailproducts: [
+      {
+        picture: DetailPic1,
+        heading:"Graphic Desing",
+        text:"English Department",
+        price:"16.48",
+        discount:"6.48",
+      },
+      {
+        picture: DetailPic2,
+        heading:"Graphic Desing",
+        text:"English Department",
+        price:"16.48",
+        discount:"6.48",
+      },
+      {
+        picture: DetailPic3,
+        heading:"Graphic Desing",
+        text:"English Department",
+        price:"16.48",
+        discount:"6.48",
+      },
+      {
+        picture: DetailPic4,
+        heading:"Graphic Desing",
+        text:"English Department",
+        price:"16.48",
+        discount:"6.48",
+      },
+      {
+        picture: DetailPic5,
+        heading:"Graphic Desing",
+        text:"English Department",
+        price:"16.48",
+        discount:"6.48",
+      },
+      {
+        picture: DetailPic6,
+        heading:"Graphic Desing",
+        text:"English Department",
+        price:"16.48",
+        discount:"6.48",
+      },
+      {
+        picture: DetailPic7,
+        heading:"Graphic Desing",
+        text:"English Department",
+        price:"16.48",
+        discount:"6.48",
+      },
+      {
+        picture: DetailPic8,
+        heading:"Graphic Desing",
+        text:"English Department",
+        price:"16.48",
+        discount:"6.48",
+      }
+    ]
 };
 
 

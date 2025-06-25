@@ -14,7 +14,7 @@ const RaitingStars: React.FC<Props> = ({ raitings }) => {
   const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
   return (
-    <div className="flex items-center text-yellow-500 gap-1">
+    <div className="flex items-center text-yellow-500 gap-2">
       {[...Array(fullStars)].map((_, idx) => (
         <FaStar key={`full-${idx}`} />
       ))}
