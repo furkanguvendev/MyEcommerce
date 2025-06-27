@@ -9,7 +9,16 @@ export const ProductDescrip = () => {
     const product = data.productDetails.content;
 
   return (
-    <div className='w-full flex flex-col items-center gap-12 py-10'>
+    <div className='w-full xl:h-[90vh] xl:justify-center flex flex-col items-center gap-12 py-10 relative'>
+        <div className='max-xl:hidden w-1/2 h-full absolute -z-10' style={{
+            background: `repeating-linear-gradient(
+                90deg,
+                rgba(248, 217, 217, 0.5),
+                rgba(248, 217, 217, 0.5) 50px,
+                rgba(255, 255, 255, 0.5) 30px,
+                rgba(255, 255, 255, 0.5) 80px
+            )`
+            }}/>
         <div className='w-11/12 xl:w-4/12 flex flex-row justify-between'>
             <button className='text-neutral-500 text-sm xl:text-xl font-bold'>Description</button>
             <button className='text-neutral-500 text-sm xl:text-xl font-bold'>Additional Information</button>
