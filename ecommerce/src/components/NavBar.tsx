@@ -64,7 +64,7 @@ export const NavBar = () => {
 
             <Link to="#">About</Link>
             <Link to="#">Blog</Link>
-            <Link to="#">Contact</Link>
+            <Link to="/contact">Contact</Link>
             <Link to="#">Pages</Link>
           </nav>
         </div>
@@ -94,7 +94,7 @@ export const NavBar = () => {
           <Link to="/" className="hover:font-semibold">Home</Link>
           <Link to="/shop" className="hover:font-semibold">Product</Link>
           <Link to="#" className="hover:font-semibold">Pricing</Link>
-          <Link to="#" className="hover:font-semibold">Contact</Link>
+          <Link to="/contact" className="hover:font-semibold">Contact</Link>
         </div>
       )}
     </>
