@@ -6,6 +6,7 @@ import { ProductDetail } from './pages/ProductDetail'
 import { Contact } from './pages/Contact'
 import { Team } from './pages/Team'
 import { AboutUs } from './pages/AboutUs'
+import { SingUp } from './pages/SingUp'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/teams' element={<Team />} />
         <Route path='/aboutus' element={<AboutUs />} />
+        <Route path='/singup' element={<SingUp />} />
       </Routes>
   )
 }
