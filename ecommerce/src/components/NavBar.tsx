@@ -71,7 +71,7 @@ export const NavBar = () => {
 
         {/* Desktop Right Nav */}
         <nav className='text-sky-500 text-xl hidden xl:flex flex-row gap-10'>
-          <Link to="#"><FontAwesomeIcon icon={faUser} /> <span className='font-bold'>Login / Register</span></Link>
+          <Link to="/singup"><FontAwesomeIcon icon={faUser} /> <span className='font-bold'>Login / Register</span></Link>
           <Link to="#"><FontAwesomeIcon icon={faMagnifyingGlass} /></Link>
           <Link to="#"><FontAwesomeIcon icon={faCartShopping} /> {'1'}</Link>
           <Link to="#"><FontAwesomeIcon icon={faHeart} /> {'1'}</Link>
