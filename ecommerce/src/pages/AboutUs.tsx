@@ -1,49 +1,24 @@
-import background from "../assets/aboutUsBg.png";
+import { NavBar } from "../components/NavBar"
+import picture1 from "../assets/aboutUsPic.png"
+import { FooterSection } from "../layouts/FooterSection"
+
 
 export const AboutUs = () => {
   return (
-    <div className="w-full xl:h-screen bg-cover font-montserrat text-white max-xl:bg-center max-xl:py-28" style={{
-        backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0)), url(${background})`
-    }}>
-        <div className='w-full xl:h-screen flex max-xl:flex-col items-center justify-center relative gap-16'>
-            <div className='flex flex-1 justify-center'>
-                <div className="xl:w-3/5 flex flex-col items-center xl:items-start gap-10">
-                    <h1 className="text-[40px] xl:text-[53px] font-bold xl:text-left">Subscribe For <br className="xl:hidden"/>Latest <br className="xl:hidden"/>Newsletter</h1>
-                    <p className="text-sm xl:text-xl font-normal xl:text-left">Problems trying to resolve the conflict between <br/>the two major realms of Classical physics: <br/>Newtonian mechanics</p>
-                    <button className='w-44 xl:w-60 h-14 xl:h-16 bg-sky-500 rounded-md text-sm xl:text-xl font-bold'>LEARN MORE!</button>
+        <div className="w-full flex flex-col items-center font-montserrat">
+            <NavBar />
+            <div className="w-11/12 flex flex-col xl:flex-row items-center max-xl:gap-24 max-xl:pt-16">
+                <div className="flex flex-1 items-center justify-center">
+                    <div className="flex flex-col items-center xl:items-start gap-12">
+                        <h3 className="text-slate-800 text-2xl font-bold max-xl:hidden">ABOUT COMPANY</h3>
+                        <h1 className="text-slate-800 text-40 xl:text-7xl font-bold">ABOUT US</h1>
+                        <p className="w-[clamp(288px,25vw,450px)] xl:text-left text-neutral-500 text-xl xl:text-2xl font-normal">We know how large objects will act, but things on a small scale</p>
+                        <button className="w-[clamp(195px,25vw,259px)] h-[clamp(52px,7vw,70px)] text-sm xl:text-xl text-white bg-sky-500 rounded-md w">Get Quete Now</button>
+                    </div>
                 </div>
+                <img src={picture1} alt="" className="flex-1"/>
             </div>
-            <div className="flex flex-1 flex-col xl:flex-row max-xl:gap-32">
-                <div className="flex flex-col flex-1 gap-12">
-                    <div className="flex flex-col items-start gap-4">
-                        <h3 className="text-[40px] xl:text-[53px] font-bold">1M+</h3>
-                        <p className="text-base xl:text-xl font-bold text-left">Things on a very <br/>small that you <br/>have any direct</p>
-                    </div>
-                    <div className="flex flex-col items-start gap-4">
-                        <h3 className="text-[40px] xl:text-[53px] font-bold">98%</h3>
-                        <p className="text-base xl:text-xl font-bold text-left">Things on a very <br/>small that you <br/>have any direct</p>
-                    </div>
-                    <div className="flex flex-col items-start gap-4">
-                        <h3 className="text-[40px] xl:text-[53px] font-bold">4.9</h3>
-                        <p className="text-base xl:text-xl font-bold text-left">Things on a very <br/>small that you <br/>have any direct</p>
-                    </div>
-                </div>
-                <div className="flex flex-col flex-1 gap-12">
-                    <div className="flex flex-col items-start gap-4">
-                        <h3 className="text-[40px] xl:text-[53px] font-bold">1M+</h3>
-                        <p className="text-base xl:text-xl font-bold text-left">Things on a very <br/>small that you <br/>have any direct</p>
-                    </div>
-                    <div className="flex flex-col items-start gap-4">
-                        <h3 className="text-[40px] xl:text-[53px] font-bold">98%</h3>
-                        <p className="text-base xl:text-xl font-bold text-left">Things on a very <br/>small that you <br/>have any direct</p>
-                    </div>
-                    <div className="flex flex-col items-start gap-4">
-                        <h3 className="text-[40px] xl:text-[53px] font-bold">4.9</h3>
-                        <p className="text-base xl:text-xl font-bold text-left">Things on a very <br/>small that you <br/>have any direct</p>
-                    </div>
-                </div>
-            </div>
+            <FooterSection />
         </div>
-    </div>
   )
 }
