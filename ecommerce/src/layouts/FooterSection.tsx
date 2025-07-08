@@ -4,14 +4,12 @@ import { FaXTwitter } from "react-icons/fa6";
 export const FooterSection = () => {
   return (
     <footer className="w-full flex flex-col items-center">
-      <div className="w-full bg-zinc-50">
-        <div className="w-4/5 mx-auto flex flex-col items-start gap-6 py-10">
-          <h1 className="text-slate-800 text-2xl font-bold">Bandage</h1>
-          <div className="flex flex-row text-sky-500 text-xl gap-4">
-            <FaFacebook />
-            <FaInstagram />
-            <FaXTwitter />
-          </div>
+      <div className="w-4/5 mx-auto flex flex-col items-start gap-6 py-10">
+        <h1 className="text-slate-800 text-2xl font-bold">Bandage</h1>
+        <div className="flex flex-row text-sky-500 text-xl gap-4">
+          <FaFacebook />
+          <FaInstagram />
+          <FaXTwitter />
         </div>
       </div>
       <div className="w-4/5 mx-auto flex flex-col xl:flex-row items-start text-left gap-7 py-16">

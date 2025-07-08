@@ -3,7 +3,8 @@ import data from "../data";
 import { ShopCard } from '../components/ShopCard';
 import { IoGrid } from "react-icons/io5";
 import { BsListCheck } from "react-icons/bs";
-import { FaLongArrowAltDown, FaLongArrowAltUp, FaHooli, FaLyft, FaPiedPiperHat, FaStripe, FaAws, FaRedditAlien} from "react-icons/fa";
+import { FaLongArrowAltDown, FaLongArrowAltUp} from "react-icons/fa";
+import { Clients } from './Clients';
 
 export const ShopProduct = () => {
 
@@ -68,14 +69,7 @@ export const ShopProduct = () => {
                 Next
             </button>
         </div>
-        <div className='w-4/5 flex flex-col xl:flex-row justify-between text-neutral-500 items-center py-28'>
-            <FaHooli className='w-36 xl:w-24 h-36 xl:h-24' />
-            <FaLyft className='w-36 xl:w-24 h-36 xl:h-24' />
-            <FaPiedPiperHat className='w-36 xl:w-24 h-36 xl:h-24' />
-            <FaStripe className='w-36 xl:w-24 h-36 xl:h-24' />
-            <FaAws className='w-36 xl:w-24 h-36 xl:h-24' />
-            <FaRedditAlien className='w-36 xl:w-24 h-36 xl:h-24' />
-        </div>
+        <Clients />
     </div>
   )
 }
