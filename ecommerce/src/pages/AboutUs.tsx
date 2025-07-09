@@ -2,10 +2,14 @@ import { NavBar } from "../components/NavBar"
 import picture1 from "../assets/aboutUsPic.png"
 import videoCard from "../assets/videocard.png"
 import { FooterSection } from "../layouts/FooterSection"
-import { Team } from "../layouts/Team"
+import { TeamSection } from "../layouts/TeamSection"
 import { Clients } from "../layouts/Clients"
 import { Testimonials } from "../layouts/Testimonials"
+import Team1 from "../assets/teampic1.jpg";
+import Team2 from "../assets/teampic2.jpg";
+import Team3 from "../assets/teampic3.jpg";
 
+const images: string[] = [Team1, Team2, Team3];
 
 export const AboutUs = () => {
   return (
@@ -50,7 +54,7 @@ export const AboutUs = () => {
                 </div>
             </div>
             <img src={videoCard} className="w-[clamp(308px,68.65vw,1318px)] h-[clamp(301.6px,37.5vw,720px)] my-20 xl:my-36"/>
-            <Team />
+            <TeamSection images={images}/>
             <Clients />
             <Testimonials />
             <FooterSection />
