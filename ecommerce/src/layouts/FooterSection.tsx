@@ -47,16 +47,18 @@ export const FooterSection = () => {
             <input
               type="text"
               placeholder="Your Email"
-              className="flex-[3] px-4 py-2 bg-gray-100 text-gray-600"
+              className="w-3/5 px-4 py-2 bg-gray-100 text-gray-600"
             />
-            <button className="flex-[2] bg-sky-500 text-white px-4 py-4">
+            <button className="w-2/5 bg-sky-500 text-white px-4 py-4">
               Subscribe
             </button>
           </div>
           <p className="text-neutral-500 text-xs font-normal pt-2">Lore Imp sum dolor Amit</p>
         </div>
       </div>
-      <p className="flex items-center max-xl:justify-center text-neutral-500 text-sm xl:text-lg font-bold w-4/5 h-24 xl:text-left bg-zinc-50">Made With Love By <br className="xl:hidden"/>Finland All Right Reserved</p>
+      <div className="w-full flex justify-center bg-zinc-50">
+              <p className="flex items-center max-xl:justify-center text-neutral-500 text-sm xl:text-lg font-bold w-4/5 h-24 xl:text-left ">Made With Love By <br className="xl:hidden"/>Finland All Right Reserved</p>
+      </div>
     </footer>
   );
 };
