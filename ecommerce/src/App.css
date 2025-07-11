@@ -50,3 +50,7 @@
   width: clamp(328px,20vw,437.4px);
   height: clamp(393px,25vw,537.4px);
 }
+
+.pricingcard-p {
+  @apply flex flex-row items-center text-left text-sm xl:text-lg gap-3;
+}

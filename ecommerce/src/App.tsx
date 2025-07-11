@@ -7,6 +7,7 @@ import { Contact } from './pages/Contact'
 import { AboutUs } from './pages/AboutUs'
 import { SingUp } from './pages/SingUp'
 import { Team } from './pages/Team'
+import { Pricing } from './pages/Pricing'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path='/aboutus' element={<AboutUs />} />
         <Route path='/singup' element={<SingUp />} />
         <Route path='/teams' element={<Team />} />
+        <Route path='/pricing' element={<Pricing />} />
       </Routes>
   )
 }
