@@ -62,10 +62,10 @@ export const NavBar = () => {
               )}
             </div>
 
-            <Link to="#">About</Link>
+            <Link to="/aboutus">About</Link>
             <Link to="#">Blog</Link>
             <Link to="/contact">Contact</Link>
-            <Link to="#">Pages</Link>
+            <Link to="/teams">Pages</Link>
           </nav>
         </div>
 
@@ -93,7 +93,7 @@ export const NavBar = () => {
         <div className="xl:hidden flex flex-col items-center gap-8 py-24 text-3xl font-normal text-neutral-500 transition-all duration-300 ease-out transform opacity-0 translate-y-[-20px] animate-slide-down">
           <Link to="/" className="hover:font-semibold">Home</Link>
           <Link to="/shop" className="hover:font-semibold">Product</Link>
-          <Link to="#" className="hover:font-semibold">Pricing</Link>
+          <Link to="/pricing" className="hover:font-semibold">Pricing</Link>
           <Link to="/contact" className="hover:font-semibold">Contact</Link>
         </div>
       )}
