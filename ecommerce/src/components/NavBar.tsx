@@ -5,10 +5,13 @@ import { IoIosArrowDown } from "react-icons/io";
 import { TbMenuDeep } from "react-icons/tb";
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../store/reducers/rootReducers'; // Doğru path'e göre ayarlandı
 
 export const NavBar = () => {
   const [isShopOpen, setIsShopOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Mobil menü için state
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const user = useSelector((state: RootState) => state.user); // Redux'tan user
 
   const toggleShopMenu = () => {
     setIsShopOpen((prev) => !prev);
@@ -28,7 +31,6 @@ export const NavBar = () => {
           <nav className='hidden xl:flex flex-row text-xl text-neutral-500 gap-5 relative'>
             <Link to="/">Home</Link>
 
-            {/* SHOP + DROPDOWN */}
             <div className="relative">
               <button
                 className='flex flex-row items-center gap-1 cursor-pointer focus:outline-none'
@@ -71,7 +73,20 @@ export const NavBar = () => {
 
         {/* Desktop Right Nav */}
         <nav className='text-sky-500 text-xl hidden xl:flex flex-row gap-10'>
-          <Link to="/singup"><FontAwesomeIcon icon={faUser} /> <span className='font-bold'>Login / Register</span></Link>
+          {user.name ? (
+            <div className="flex items-center gap-2">
+              <FontAwesomeIcon icon={faUser} />
+              <span className="font-bold">{user.name}</span>
+            </div>
+          ) : (
+            <>
+              <Link to="/login" className="flex items-center gap-1">
+                <FontAwesomeIcon icon={faUser} />
+                <span className="font-bold">Login</span>
+              </Link>
+              <Link to="/singup" className="font-bold">Register</Link>
+            </>
+          )}
           <Link to="#"><FontAwesomeIcon icon={faMagnifyingGlass} /></Link>
           <Link to="#"><FontAwesomeIcon icon={faCartShopping} /> {'1'}</Link>
           <Link to="#"><FontAwesomeIcon icon={faHeart} /> {'1'}</Link>
