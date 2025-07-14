@@ -8,13 +8,24 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../store/reducers/rootReducers'; // Doğru path'e göre ayarlandı
 
+type Category ={
+  id: number;
+  code: string;
+  title: string;
+  img: string;
+  rating: number;
+  gender: string;
+}
+
 export const NavBar = () => {
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const user = useSelector((state: RootState) => state.user); // Redux'tan user
+  const categories = useSelector((state: RootState) => state.product.categories) as Category[];
 
   const toggleShopMenu = () => {
     setIsShopOpen((prev) => !prev);
+    console.log(categories);
   };
 
   const toggleMobileMenu = () => {
@@ -43,21 +54,45 @@ export const NavBar = () => {
                   <div className="w-1/2 text-left flex flex-col gap-10">
                     <h4 className="font-bold text-slate-800 mb-2">Kadın</h4>
                     <ul className="space-y-1 font-bold text-neutral-500  flex flex-col gap-8">
-                      <li><Link to="/shop">Bags</Link></li>
+                      {categories &&
+                      categories
+                        .filter((item: Category) => item.gender === "k")
+                        .map((item: Category) => (
+                          <li key={item.id}>
+                            <Link
+                              to={`/shop/${item.gender}/${item.code.replace(/^k:/, "")}/${item.id}`}
+                            >
+                              {item.title}
+                            </Link>
+                          </li>
+                        ))}
+                      {/* <li><Link to="/shop">Bags</Link></li>
                       <li><Link to="/shop">Belts</Link></li>
                       <li><Link to="/shop">Cosmetics</Link></li>
                       <li><Link to="/shop">Bags</Link></li>
-                      <li><Link to="/shop">Hats</Link></li>
+                      <li><Link to="/shop">Hats</Link></li> */}
                     </ul>
                   </div>
                   <div className="w-1/2 text-left flex flex-col gap-10">
                     <h4 className="font-bold text-slate-800 mb-2">Erkek</h4>
                     <ul className="space-y-1 font-bold text-neutral-500 flex flex-col gap-8">
-                      <li><Link to="/shop">Bags</Link></li>
+                      {categories &&
+                      categories
+                        .filter((item: Category) => item.gender === "e")
+                        .map((item: Category) => (
+                          <li key={item.id}>
+                            <Link
+                              to={`/shop/${item.gender}/${item.code.replace(/^e:/, "")}/${item.id}`}
+                            >
+                              {item.title}
+                            </Link>
+                          </li>
+                        ))}
+                      {/* <li><Link to="/shop">Bags</Link></li>
                       <li><Link to="/shop">Belts</Link></li>
                       <li><Link to="/shop">Cosmetics</Link></li>
                       <li><Link to="/shop">Bags</Link></li>
-                      <li><Link to="/shop">Hats</Link></li>
+                      <li><Link to="/shop">Hats</Link></li> */}
                     </ul>
                   </div>
                 </div>
