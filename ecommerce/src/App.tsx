@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
@@ -13,31 +13,28 @@ import { Pricing } from './pages/Pricing';
 import { Login } from './pages/Login';
 import axiosInstance from './api/axiosInstance';
 import { loginUser, logoutUser } from './store/actions/userActions';
+import { setCategories } from './store/actions/productActions';
 
 function App() {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem('token') || sessionStorage.getItem('token');
 
     if (token) {
-      // Token'ı axios header'a tanımla
-      axiosInstance.defaults.headers.common['Authorization'] = token; // Not: BEARER eklenmeyecek
+      axiosInstance.defaults.headers.common['Authorization'] = token;
 
-      // Token'ı verify et
       axiosInstance
-        .get('/verify') // Beklenen endpoint: /verify
+        .get('/verify')
         .then((res) => {
           const user = res.data;
 
-          // Redux store'a kullanıcı bilgisi aktar
           dispatch(loginUser({ ...user, token }));
 
-          // İsteğe bağlı olarak token'ı yenile (gerekirse)
-          localStorage.setItem('token', token); // Eğer rememberMe varsa
+          localStorage.setItem('token', token);
         })
         .catch(() => {
-          // Token geçersizse tüm bilgileri temizle
           localStorage.removeItem('token');
           sessionStorage.removeItem('token');
           delete axiosInstance.defaults.headers.common['Authorization'];
@@ -45,6 +42,29 @@ function App() {
         });
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    axiosInstance
+      .get("/categories")
+      .then((res) => {
+        dispatch(setCategories(res.data));
+        setLoading(false);
+      })
+      .catch(() => {
+        console.log("Categories Not Found");
+        setLoading(false);
+      });
+  }, [dispatch]);
+
+  if (loading) {
+    return (
+      <div className="flex flex-row gap-2 justify-center items-center h-screen">
+        <div className="w-4 h-4 rounded-full bg-red-500 animate-bounce"></div>
+        <div className="w-4 h-4 rounded-full bg-red-500 animate-bounce [animation-delay:-.3s]"></div>
+        <div className="w-4 h-4 rounded-full bg-red-500 animate-bounce [animation-delay:-.5s]"></div>
+      </div>
+    );
+  }
 
   return (
     <Routes>
