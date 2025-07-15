@@ -1,15 +1,22 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import data from "../data";
 import { ShopCard } from '../components/ShopCard';
 import { IoGrid } from "react-icons/io5";
 import { BsListCheck } from "react-icons/bs";
 import { FaLongArrowAltDown, FaLongArrowAltUp} from "react-icons/fa";
 import { Clients } from './Clients';
+import axiosInstance from '../api/axiosInstance';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { setProductList, setTotal } from '../store/actions/productActions';
+import type { RootState } from '../store/store';
 
 export const ShopProduct = () => {
-
+    const {categoryId} = useParams()
     const [navSelected, setNavSelected] = useState<'first' | 'next' | null>(null);
     const [pageSelected, setPageSelected] = useState<number | null>(null);
+    const dispatch = useDispatch();
+    const urunler = useSelector((state: RootState)=> state.product.productList);
 
     const pageClass = (num: number) =>
         `border-2 border-neutral-300 font-bold text-sm xl:text-lg w-14 h-24 ${
@@ -17,6 +24,18 @@ export const ShopProduct = () => {
             ? 'bg-sky-500 text-white'
             : 'bg-white text-sky-500'
     }`;
+
+    useEffect(()=>{
+        axiosInstance
+        .get(`/products?category=${categoryId}`)
+        .then((res)=>(
+            dispatch(setProductList(res.data.products)),
+            dispatch(setTotal(res.data.total))
+        ))
+        .catch(()=>{
+            console.log("Data Getirilemedi")
+        })
+    }, [dispatch])
 
   return (
     <div className='w-full flex flex-col items-center'>
@@ -69,6 +88,7 @@ export const ShopProduct = () => {
                 Next
             </button>
         </div>
+        <button onClick={()=>{console.log(urunler)}}>DATA KONTROL</button>
         <Clients />
     </div>
   )
