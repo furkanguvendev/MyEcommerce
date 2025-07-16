@@ -1,8 +1,4 @@
-export type Product = {
-  id: string;
-  name: string;
-  // Gerekirse diğer alanları da ekle
-};
+import type { Product } from "../../types&enums/types";
 
 export type ProductState = {
   categories: object[]; // Daha spesifik tip istersen bunu da detaylandırabiliriz
