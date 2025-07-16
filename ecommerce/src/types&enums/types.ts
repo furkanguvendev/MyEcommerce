@@ -1,8 +1,3 @@
-type ProductImg = {
-    url: string;
-    index: number;
-}
-
 export type Product = {
     id: number;
     name: string;
@@ -13,6 +8,11 @@ export type Product = {
     category_id: number;
     rating: number;
     sell_count: number;
-    images: ProductImg[];
+    images: [
+        {
+            url: string;
+            index: number;
+        }
+    ];
     
 }
