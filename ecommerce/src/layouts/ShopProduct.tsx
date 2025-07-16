@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { ShopCard } from '../components/ShopCard';
 import { IoGrid } from "react-icons/io5";
 import { BsListCheck } from "react-icons/bs";
-import { FaLongArrowAltDown, FaLongArrowAltUp } from "react-icons/fa";
 import { Clients } from './Clients';
 import axiosInstance from '../api/axiosInstance';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,30 +17,28 @@ export const ShopProduct = () => {
     const [product, setProduct] = useState<Product[]>([]);
     const dispatch = useDispatch();
     const urunler = useSelector((state: RootState) => state.product.productList);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [sortOption, setSortOption] = useState("");
 
-    // Her sayfada gösterilecek ürün sayısı
     const pageSize = 12;
-    // Toplam sayfa sayısı
     const totalPages = Math.ceil(urunler.length / pageSize);
 
     const pageClass = (num: number) =>
         `border-2 border-neutral-300 font-bold text-sm xl:text-lg w-14 h-24 ${pageSelected === num ? 'bg-sky-500 text-white' : 'bg-white text-sky-500'}`;
 
-    // Sayfa değişince product state'ini güncelle
     useEffect(() => {
         const start = (pageSelected - 1) * pageSize;
         const end = start + pageSize;
         setProduct(urunler.slice(start, end));
     }, [urunler, pageSelected]);
 
-    // Data çekme
     useEffect(() => {
         axiosInstance
             .get(`/products?category=${categoryId}`)
             .then((res) => {
                 dispatch(setProductList(res.data.products));
                 dispatch(setTotal(res.data.total));
-                setPageSelected(1); // yeni data geldiğinde ilk sayfaya dön
+                setPageSelected(1);
             })
             .catch(() => {
                 console.log("Data Getirilemedi");
@@ -60,6 +57,25 @@ export const ShopProduct = () => {
         }
     };
 
+    const handleFilter = () => {
+        const params = new URLSearchParams();
+
+        if (categoryId) params.append("category", categoryId);
+        if (searchTerm.trim()) params.append("filter", searchTerm);
+        if (sortOption) params.append("sort", sortOption);
+
+        axiosInstance
+            .get(`/products?${params.toString()}`)
+            .then((res) => {
+            dispatch(setProductList(res.data.products));
+            dispatch(setTotal(res.data.total));
+            setPageSelected(1); // Yeni veri gelince yine ilk sayfaya dön
+            })
+            .catch(() => {
+            console.log("Filtreli data getirilemedi");
+            });
+    };
+
     return (
         <div className='w-full flex flex-col items-center'>
             <div className='w-11/12 flex flex-col max-xl:gap-5 xl:flex-row xl:h-32 items-center justify-between mt-6'>
@@ -70,15 +86,32 @@ export const ShopProduct = () => {
                     <button className='w-16 h-16 border-2 border-neutral-200 flex justify-center items-center'><BsListCheck /></button>
                 </div>
                 <div className='flex flex-row gap-3'>
-                    <select className='border border-neutral-300 bg-neutral-200 rounded-lg w-48 h-16'>
+                    <input
+                        type='text'
+                        placeholder='Aramak için yazın...'
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className='border border-neutral-300 bg-white rounded-lg w-48 h-16 px-2'
+                    />
+                    <select
+                        className='border border-neutral-300 bg-neutral-200 rounded-lg w-48 h-16'
+                        value={sortOption}
+                        onChange={(e) => setSortOption(e.target.value)}
+                    >
+                        <option value="">Sıralama Seç</option>
                         <option value="popular">Popularity</option>
                         <option value="newest">Newest Arrivals</option>
-                        <option value="price-asc">Price: Low to High <FaLongArrowAltUp /></option>
-                        <option value="price-desc">Price: High to Low <FaLongArrowAltDown /></option>
+                        <option value="price:asc">Price: Low to High</option>
+                        <option value="price:desc">Price: High to Low</option>
                         <option value="discount">Highest Discount</option>
                         <option value="rating">Top Rated</option>
                     </select>
-                    <button className='bg-sky-500 font-bold text-sm xl:text-xl w-32 h-16 text-white rounded-md'>Filter</button>
+                    <button
+                        onClick={handleFilter}
+                        className='bg-sky-500 font-bold text-sm xl:text-xl w-32 h-16 text-white rounded-md'
+                    >
+                        Filter
+                    </button>
                 </div>
             </div>
             <div className='w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-10 gap-y-16 my-16'>
