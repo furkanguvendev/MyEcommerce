@@ -70,7 +70,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/shop/:gender/:categoryName/:categoryId' element={<Shop />} />
-      <Route path='/details' element={<ProductDetail />} />
+      <Route path='/shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId' element={<ProductDetail />} />
       <Route path='/contact' element={<Contact />} />
       <Route path='/aboutus' element={<AboutUs />} />
       <Route path='/singup' element={<SingUp />} />

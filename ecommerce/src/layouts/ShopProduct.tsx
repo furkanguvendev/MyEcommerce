@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { ShopCard } from '../components/ShopCard';
 import { IoGrid } from "react-icons/io5";
 import { BsListCheck } from "react-icons/bs";
@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { setProductList, setTotal } from '../store/actions/productActions';
 import type { RootState } from '../store/store';
-import type { Product } from "../types&enums/types"
+import type { Product } from "../types&enums/types";
 
 export const ShopProduct = () => {
     const { categoryId } = useParams();
@@ -17,33 +17,66 @@ export const ShopProduct = () => {
     const [product, setProduct] = useState<Product[]>([]);
     const dispatch = useDispatch();
     const urunler = useSelector((state: RootState) => state.product.productList);
+    const total = useSelector((state: RootState) => state.product.total);
     const [searchTerm, setSearchTerm] = useState("");
     const [sortOption, setSortOption] = useState("");
 
     const pageSize = 12;
-    const totalPages = Math.ceil(urunler.length / pageSize);
+    const totalPages = Math.ceil(total / pageSize);
 
     const pageClass = (num: number) =>
         `border-2 border-neutral-300 font-bold text-sm xl:text-lg w-14 h-24 ${pageSelected === num ? 'bg-sky-500 text-white' : 'bg-white text-sky-500'}`;
 
-    useEffect(() => {
-        const start = (pageSelected - 1) * pageSize;
-        const end = start + pageSize;
-        setProduct(urunler.slice(start, end));
-    }, [urunler, pageSelected]);
 
     useEffect(() => {
+        const offset = (pageSelected - 1) * pageSize;
+        const params = new URLSearchParams();
+
+        if (categoryId) params.append("category", categoryId);
+        if (searchTerm) params.append("filter", searchTerm);
+
+
+        let sortValue = "";
+        switch (sortOption) {
+            case "popular":
+                sortValue = "sell_count:desc";
+                break;
+            case "newest":
+                sortValue = "sell_count:asc";
+                break;
+            case "price:asc":
+                sortValue = "price:asc";
+                break;
+            case "price:desc":
+                sortValue = "price:desc";
+                break;
+            case "discount":
+                sortValue = "stock:desc";
+                break;
+            case "rating":
+                sortValue = "rating:desc";
+                break;
+        }
+
+        if (sortValue) params.append("sort", sortValue);
+        params.append("offset", offset.toString());
+        params.append("limit", pageSize.toString());
+
         axiosInstance
-            .get(`/products?category=${categoryId}`)
+            .get(`/products?${params.toString()}`)
             .then((res) => {
                 dispatch(setProductList(res.data.products));
                 dispatch(setTotal(res.data.total));
-                setPageSelected(1);
             })
             .catch(() => {
-                console.log("Data Getirilemedi");
+                console.log("Veri getirilemedi.");
             });
-    }, [dispatch, categoryId]);
+    }, [categoryId, pageSelected, searchTerm, sortOption]);
+
+
+    useEffect(() => {
+        setProduct(urunler);
+    }, [urunler]);
 
     const handleFirst = () => {
         setPageSelected(1);
@@ -52,28 +85,13 @@ export const ShopProduct = () => {
 
     const handleNext = () => {
         if (pageSelected < totalPages) {
-            setPageSelected(pageSelected + 1);
+            setPageSelected(prev => prev + 1);
             setNavSelected('next');
         }
     };
 
     const handleFilter = () => {
-        const params = new URLSearchParams();
-
-        if (categoryId) params.append("category", categoryId);
-        if (searchTerm.trim()) params.append("filter", searchTerm);
-        if (sortOption) params.append("sort", sortOption);
-
-        axiosInstance
-            .get(`/products?${params.toString()}`)
-            .then((res) => {
-            dispatch(setProductList(res.data.products));
-            dispatch(setTotal(res.data.total));
-            setPageSelected(1); // Yeni veri gelince yine ilk sayfaya dön
-            })
-            .catch(() => {
-            console.log("Filtreli data getirilemedi");
-            });
+        setPageSelected(1); // Filtrelemeden sonra 1. sayfaya git
     };
 
     return (
@@ -81,11 +99,11 @@ export const ShopProduct = () => {
             <div className='w-11/12 flex flex-col max-xl:gap-5 xl:flex-row xl:h-32 items-center justify-between mt-6'>
                 <p className='font-bold text-sm xl:text-xl text-neutral-500'>Showing {product.length} result</p>
                 <div className='flex flex-row items-center gap-5'>
-                    <p className='font-bold text-sm xl:text-xl text-neutral-500'>Vievs:</p>
+                    <p className='font-bold text-sm xl:text-xl text-neutral-500'>Views:</p>
                     <button className='w-16 h-16 border-2 border-neutral-200 flex justify-center items-center'><IoGrid /></button>
                     <button className='w-16 h-16 border-2 border-neutral-200 flex justify-center items-center'><BsListCheck /></button>
                 </div>
-                <div className='flex flex-row gap-3'>
+                <div className='flex flex-col max-xl:items-center xl:flex-row gap-3'>
                     <input
                         type='text'
                         placeholder='Aramak için yazın...'
@@ -147,7 +165,6 @@ export const ShopProduct = () => {
                     Next
                 </button>
             </div>
-            <button onClick={() => { console.log(urunler) }}>DATA KONTROL</button>
             <Clients />
         </div>
     );
