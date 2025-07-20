@@ -1,4 +1,7 @@
-import type { Product } from "../types&enums/types";
+import { useNavigate } from "react-router-dom";
+import type { Category, Product } from "../types&enums/types";
+import { useSelector } from "react-redux";
+import type { RootState } from "../store/store";
 
 type Props = {
     product: Product;
@@ -6,14 +9,35 @@ type Props = {
 
 export const ShopCard = ({product}: Props) => {
 
+    const category = useSelector((state: RootState) => 
+    (state.product.categories as Category[]).find((item) => item.id === product.category_id)
+    );
+
+    const navigate = useNavigate();
+
     const truncateText = (text: string, wordLimit: number) => {
         const words = text.split(" ");
         if (words.length <= wordLimit) return text;
         return words.slice(0, wordLimit).join(" ") + " ...";
     };
 
+    function toSlug(str: string): string {
+    return str
+        .toLowerCase()
+        .replace(/ç/g, "c")
+        .replace(/ğ/g, "g")
+        .replace(/ı/g, "i")
+        .replace(/ö/g, "o")
+        .replace(/ş/g, "s")
+        .replace(/ü/g, "u")
+        .replace(/[^a-z0-9\s-]/g, "") // geçersiz karakterleri temizle
+        .replace(/\s+/g, "-")         // boşlukları - ile değiştir
+        .replace(/-+/g, "-")          // birden fazla - varsa teke indir
+        .replace(/^-+|-+$/g, "");     // baştaki/sondaki -'leri sil
+    }
+
   return (
-    <div>
+    <button onClick={() => navigate(`/shop/${category?.gender}/${category?.code.replace(/^k:/, "")}/${category?.id}/${toSlug(product.name)}/${product.id}`)}>
         <img src={product.images[0].url} alt='' className='w-full h-[clamp(400px,-10vw+480px,427px)] object-cover'/>
         <div className='flex flex-col items-center gap-6 py-10 shadow-md'>
             <h3 className='font-bold text-base xl:text-xl text-slate-800'>{product.name}</h3>
@@ -29,6 +53,6 @@ export const ShopCard = ({product}: Props) => {
                 <p className='w-4 xl:w-6 h-4 xl:h-6 rounded-full bg-slate-800'></p>
             </div>
         </div>
-    </div>
+    </button>
   )
 }
