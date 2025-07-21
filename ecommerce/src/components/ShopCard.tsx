@@ -30,10 +30,10 @@ export const ShopCard = ({product}: Props) => {
         .replace(/ö/g, "o")
         .replace(/ş/g, "s")
         .replace(/ü/g, "u")
-        .replace(/[^a-z0-9\s-]/g, "") // geçersiz karakterleri temizle
-        .replace(/\s+/g, "-")         // boşlukları - ile değiştir
-        .replace(/-+/g, "-")          // birden fazla - varsa teke indir
-        .replace(/^-+|-+$/g, "");     // baştaki/sondaki -'leri sil
+        .replace(/[^a-z0-9\s-]/g, "")
+        .replace(/\s+/g, "-") 
+        .replace(/-+/g, "-") 
+        .replace(/^-+|-+$/g, "");
     }
 
   return (

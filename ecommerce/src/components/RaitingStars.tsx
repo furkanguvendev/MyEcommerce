@@ -2,12 +2,11 @@ import React from "react";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
 type Props = {
-  raitings: number[];
+  raiting: number;
 };
 
-const RaitingStars: React.FC<Props> = ({ raitings }) => {
-  const average =
-    raitings.reduce((sum, r) => sum + r, 0) / raitings.length;
+const RaitingStars: React.FC<Props> = ({ raiting }) => {
+  const average = raiting;
 
   const fullStars = Math.floor(average);
   const hasHalfStar = average - fullStars >= 0.25 && average - fullStars < 0.75;
