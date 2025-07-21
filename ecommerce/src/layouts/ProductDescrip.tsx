@@ -1,4 +1,3 @@
-import React from 'react'
 import data from "../data"
 import { SlArrowRight } from "react-icons/sl";
 

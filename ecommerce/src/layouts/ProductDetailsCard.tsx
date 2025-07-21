@@ -1,16 +1,19 @@
 import DetailsCarousel from "../components/DetailsCarousel";
 import { RiArrowRightSLine } from "react-icons/ri";
-import data from "../data";
 import RaitingStars from "../components/RaitingStars";
 import { CiHeart } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
 import { IoMdEye } from "react-icons/io";
+import type { Product } from "../types&enums/types";
 
-export const ProductDetailsCard = () => {
-    
-    const product = data.productDetails;
+type Props = {
+    product: Product;
+}
 
-    const raitings: number[] = product.reviews.map((review) => review.raiting);
+export const ProductDetailsCard = ({product}: Props) => {
+
+
+    const raiting: number = product.rating;
 
 
   return (
@@ -22,16 +25,16 @@ export const ProductDetailsCard = () => {
             <p className="text-neutral-500 font-bold xl:text-xl">Shop</p>
         </div> 
         <div className="w-full flex flex-col xl:flex-row xl:gap-16">
-            <DetailsCarousel pictures={product.pictures} miniPictures={product.miniPictures}/>
+            <DetailsCarousel pictures={product.images.map((img)=> img.url)} miniPictures={product.images.map((img)=> img.url)}/>
             <div className="flex flex-col items-start gap-10 p-5">
-                <h3 className="text-slate-800 text-3xl font-normal">{product.content.heading}</h3>
+                <h3 className="text-slate-800 text-3xl font-normal">{product.name}</h3>
                 <div className="flex flex-row gap-3">
-                    <RaitingStars raitings={raitings}/>
-                    <p className="text-sm xl:text-xl text-neutral-500 font-bold">{raitings.length} Reviews</p>
+                    <RaitingStars raiting={raiting}/>
+                    <p className="text-sm xl:text-xl text-neutral-500 font-bold">{product.sell_count} Reviews</p>
                 </div>
                 <h3 className="text-2xl xl:text-4xl text-slate-800 font-bold">${product.price}</h3>
-                <p className="text-sm xl:text-xl text-neutral-500 font-bold">Availability : <span className="text-sky-500">{product.avalibility}</span></p>
-                <p className="text-sm xl:text-xl text-neutral-500 font-normal text-left">{product.content.description}</p>
+                <p className="text-sm xl:text-xl text-neutral-500 font-bold">Availability : <span className="text-sky-500">{product.stock}</span></p>
+                <p className="text-sm xl:text-xl text-neutral-500 font-normal text-left">{product.description}</p>
                 <hr className="w-full"/>
                 <div className="flex flex-row gap-3">
                     <p className="w-8 xl:w-10 aspect-square rounded-full bg-sky-500"></p>
