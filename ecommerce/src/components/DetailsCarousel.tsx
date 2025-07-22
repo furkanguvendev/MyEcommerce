@@ -18,13 +18,13 @@ const DetailsCarousel: React.FC<Props> = ({ pictures, miniPictures }) => {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto">
+    <div className="w-[clamp(348px,30vw,702.89px)] max-w-3xl mx-auto">
       {/* Büyük Resim */}
       <div className="relative">
         <img
           src={pictures[currentIndex]}
           alt={`Slide ${currentIndex}`}
-          className="w-full object-contain rounded-lg"
+          className="w-full h-[clamp(277px,25vw,625.1px)] object-cover rounded-lg"
         />
 
         {/* Sol Buton */}
