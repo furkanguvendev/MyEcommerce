@@ -17,7 +17,7 @@ export const ProductDetailsCard = ({product}: Props) => {
 
 
   return (
-    <div className="w-full flex justify-center bg-zinc-50">
+    <div className="w-full flex justify-center bg-zinc-50 xl:pb-20">
         <div className="w-11/12">
         <div className="hidden xl:flex flex-row h-24 xl:h-32 max-xl:justify-center items-center">
             <p className="text-slate-800 font-bold xl:text-xl">Home</p>
@@ -26,7 +26,7 @@ export const ProductDetailsCard = ({product}: Props) => {
         </div> 
         <div className="w-full flex flex-col xl:flex-row xl:gap-16">
             <DetailsCarousel pictures={product.images.map((img)=> img.url)} miniPictures={product.images.map((img)=> img.url)}/>
-            <div className="flex flex-col items-start gap-10 p-5">
+            <div className="xl:w-1/2 flex flex-col items-start gap-10 p-5">
                 <h3 className="text-slate-800 text-3xl font-normal">{product.name}</h3>
                 <div className="flex flex-row gap-3">
                     <RaitingStars raiting={raiting}/>
