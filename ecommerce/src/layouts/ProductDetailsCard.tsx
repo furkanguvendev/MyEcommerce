@@ -5,6 +5,8 @@ import { CiHeart } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
 import { IoMdEye } from "react-icons/io";
 import type { Product } from "../types&enums/types";
+// import { useDispatch } from "react-redux";
+// import { setCart } from "../store/actions/cartActions";
 
 type Props = {
     product: Product;
@@ -12,9 +14,12 @@ type Props = {
 
 export const ProductDetailsCard = ({product}: Props) => {
 
-
+    // const dispatch = useDispatch();
     const raiting: number = product.rating;
 
+    // const onClick = () => {
+    //     dispatch(setCart([{count: 1,product: product}]));
+    // }
 
   return (
     <div className="w-full flex justify-center bg-zinc-50 xl:pb-20">
