@@ -12,7 +12,7 @@ export type User = {
 const initialState: User = {
   name: "",
   email: "",
-  role_id: ""
+  role_id: "",
 };
 
 type Action =
