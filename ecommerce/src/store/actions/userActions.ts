@@ -26,7 +26,6 @@ export const loginUser = (user: UserPayload) => {
 export const logoutUser = () => {
   localStorage.removeItem("token");
   sessionStorage.removeItem("token");
-
   return {
     type: LOGOUT_USER
   };

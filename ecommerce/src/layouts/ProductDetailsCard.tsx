@@ -5,8 +5,9 @@ import { CiHeart } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
 import { IoMdEye } from "react-icons/io";
 import type { Product } from "../types&enums/types";
-// import { useDispatch } from "react-redux";
-// import { setCart } from "../store/actions/cartActions";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../store/store";
+import { addItem, removeItem } from "../store/actions/cartActions";
 
 type Props = {
     product: Product;
@@ -14,12 +15,19 @@ type Props = {
 
 export const ProductDetailsCard = ({product}: Props) => {
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const raiting: number = product.rating;
+    const cart = useSelector((state: RootState) => state.cart.cart);
 
-    // const onClick = () => {
-    //     dispatch(setCart([{count: 1,product: product}]));
-    // }
+    const onToggleCart = () => {
+        const isInCart = cart.some(item => item.product.id === product.id);
+        const itemId = product.id;
+        if(isInCart){
+            dispatch(removeItem(itemId));
+        } else {
+            dispatch(addItem({count: 1, product}));
+        }
+    }
 
   return (
     <div className="w-full flex justify-center bg-zinc-50 xl:pb-20">
@@ -50,7 +58,7 @@ export const ProductDetailsCard = ({product}: Props) => {
                 <div className="flex flex-row items-center gap-3">
                     <button className="w-36 xl:w-52 h-11 xl:h-16 bg-sky-500 text-white text-sm xl:text-xl font-bold rounded-md">Select Options</button>
                     <button className="border w-10 h-10 xl:w-14 xl:h-14 flex justify-center items-center border-neutral-500 rounded-full"><CiHeart size={28}/></button>
-                    <button className="border w-10 h-10 xl:w-14 xl:h-14 flex justify-center items-center border-neutral-500 rounded-full"><IoCartOutline size={28}/></button>
+                    <button onClick={onToggleCart} className="border w-10 h-10 xl:w-14 xl:h-14 flex justify-center items-center border-neutral-500 rounded-full"><IoCartOutline size={28}/></button>
                     <button className="border w-10 h-10 xl:w-14 xl:h-14 flex justify-center items-center border-neutral-500 rounded-full"><IoMdEye size={28}/></button>
                 </div>
             </div>      
