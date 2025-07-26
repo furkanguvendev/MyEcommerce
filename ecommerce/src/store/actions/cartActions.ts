@@ -2,6 +2,8 @@ import type { Product } from "../../types&enums/types";
 
 export const SET_CART = 'SET_CART';
 export const ADD_ITEM = 'ADD_ITEM';
+export const ADD_FAV = 'ADD_FAV';
+export const REMOVE_FAV = 'REMOVE_FAV';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const SET_PAYMENT = 'SET_PAYMENT';
 export const SET_ADDRESS = 'SET_ADDRESS';
@@ -19,6 +21,16 @@ export const addItem = (item: {count: number; product: Product}) => ({
 export const removeItem = (id: number) => ({
   type: REMOVE_ITEM,
   payload: id
+})
+
+export const addFav = (item: Product) => ({
+  type: ADD_FAV,
+  payload: item
+})
+
+export const removeFav = (id: number) => ({
+  type: REMOVE_FAV,
+  payload: id 
 })
 
 export const setPayment = (payment: object) => ({

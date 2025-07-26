@@ -23,6 +23,7 @@ export const NavBar = () => {
   const user = useSelector((state: RootState) => state.user); // Redux'tan user
   const categories = useSelector((state: RootState) => state.product.categories) as Category[];
   const cart = useSelector((state: RootState) => state.cart.cart);
+  const favorite = useSelector((state: RootState) => state.cart.favorite);
 
   const toggleShopMenu = () => {
     setIsShopOpen((prev) => !prev);
@@ -125,7 +126,7 @@ export const NavBar = () => {
           )}
           <Link to="#"><FontAwesomeIcon icon={faMagnifyingGlass} /></Link>
           <Link to="#"><FontAwesomeIcon icon={faCartShopping} /> {cart.length}</Link>
-          <Link to="#"><FontAwesomeIcon icon={faHeart} /> {'1'}</Link>
+          <Link to="#"><FontAwesomeIcon icon={faHeart} /> {favorite.length}</Link>
         </nav>
 
         {/* Mobile Right Nav */}
