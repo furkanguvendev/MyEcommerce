@@ -1,13 +1,14 @@
 import DetailsCarousel from "../components/DetailsCarousel";
 import { RiArrowRightSLine } from "react-icons/ri";
 import RaitingStars from "../components/RaitingStars";
-import { CiHeart } from "react-icons/ci";
-import { IoCartOutline } from "react-icons/io5";
+import { IoMdHeart } from "react-icons/io";
+import { IoCart } from "react-icons/io5";
 import { IoMdEye } from "react-icons/io";
 import type { Product } from "../types&enums/types";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../store/store";
-import { addItem, removeItem } from "../store/actions/cartActions";
+import { addFav, addItem, removeFav, removeItem } from "../store/actions/cartActions";
+import { useState } from "react";
 
 type Props = {
     product: Product;
@@ -18,14 +19,45 @@ export const ProductDetailsCard = ({product}: Props) => {
     const dispatch = useDispatch();
     const raiting: number = product.rating;
     const cart = useSelector((state: RootState) => state.cart.cart);
+    const favorite = useSelector((state: RootState) => state.cart.favorite);
+    const [buttonColor, setButtonColor] = useState({
+        button1: false,
+        button2: false,
+    })
 
     const onToggleCart = () => {
         const isInCart = cart.some(item => item.product.id === product.id);
-        const itemId = product.id;
+        
         if(isInCart){
-            dispatch(removeItem(itemId));
+            dispatch(removeItem(product.id));
+            setButtonColor(prev => ({
+                ...prev,
+                button1: !prev.button1
+            }))
         } else {
             dispatch(addItem({count: 1, product}));
+            setButtonColor(prev => ({
+                ...prev,
+                button1: !prev.button1
+            }))
+        }
+    }
+
+    const onToggleFav = () => {
+        const isInFav = favorite.some(item => item.id === product.id);
+        
+        if(isInFav) {
+            dispatch(removeFav(product.id));
+            setButtonColor(prev => ({
+                ...prev,
+                button2: !prev.button2
+            }))
+        } else {
+            dispatch(addFav(product));
+            setButtonColor(prev => ({
+                ...prev,
+                button2: !prev.button2
+            }))
         }
     }
 
@@ -57,8 +89,19 @@ export const ProductDetailsCard = ({product}: Props) => {
                 </div>
                 <div className="flex flex-row items-center gap-3">
                     <button className="w-36 xl:w-52 h-11 xl:h-16 bg-sky-500 text-white text-sm xl:text-xl font-bold rounded-md">Select Options</button>
-                    <button className="border w-10 h-10 xl:w-14 xl:h-14 flex justify-center items-center border-neutral-500 rounded-full"><CiHeart size={28}/></button>
-                    <button onClick={onToggleCart} className="border w-10 h-10 xl:w-14 xl:h-14 flex justify-center items-center border-neutral-500 rounded-full"><IoCartOutline size={28}/></button>
+                    <button
+                        onClick={onToggleFav}
+                        className="border w-10 h-10 xl:w-14 xl:h-14 flex justify-center items-center border-neutral-500 rounded-full"
+                        >
+                        <IoMdHeart size={28} className={buttonColor.button2 ? "text-red-500" : "text-slate-800"} />
+                    </button>
+
+                    <button
+                        onClick={onToggleCart}
+                        className="border w-10 h-10 xl:w-14 xl:h-14 flex justify-center items-center border-neutral-500 rounded-full"
+                        >
+                        <IoCart size={28} className={buttonColor.button1 ? "text-sky-500" : "text-slate-800"} />
+                    </button>
                     <button className="border w-10 h-10 xl:w-14 xl:h-14 flex justify-center items-center border-neutral-500 rounded-full"><IoMdEye size={28}/></button>
                 </div>
             </div>      
