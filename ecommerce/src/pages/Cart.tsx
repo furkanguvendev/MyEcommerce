@@ -39,7 +39,7 @@ export const Cart = () => {
                 )}
             </div>
 
-            <div className="w-full xl:w-1/3 flex flex-col gap-4 border p-4 rounded-lg bg-gray-50">
+            <div className="w-full xl:w-1/3 max-h-fit flex flex-col gap-4 border p-8 rounded-lg bg-gray-50">
                 <h3 className="text-lg font-semibold border-b pb-2">Sipariş Özeti</h3>
 
                 <div className="flex justify-between text-sm">
@@ -54,7 +54,7 @@ export const Cart = () => {
 
                 <div className="flex justify-between text-sm">
                 <p className="text-left">
-                    300₺ ve Üzeri Kargo <br className="hidden sm:block"/> Bedava (Satıcı
+                    300₺ ve Üzeri Kargo <br /> Bedava (Satıcı
                     Karşılar)
                 </p>
                 <p>
