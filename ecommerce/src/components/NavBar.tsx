@@ -125,7 +125,7 @@ export const NavBar = () => {
             </>
           )}
           <Link to="#"><FontAwesomeIcon icon={faMagnifyingGlass} /></Link>
-          <Link to="#"><FontAwesomeIcon icon={faCartShopping} /> {cart.length}</Link>
+          <Link to="/cart"><FontAwesomeIcon icon={faCartShopping} /> {cart.length}</Link>
           <Link to="#"><FontAwesomeIcon icon={faHeart} /> {favorite.length}</Link>
         </nav>
 
