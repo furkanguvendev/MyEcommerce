@@ -18,9 +18,11 @@ type Category ={
 }
 
 export const NavBar = () => {
-  const [isShopOpen, setIsShopOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const user = useSelector((state: RootState) => state.user); // Redux'tan user
+  const [isShopOpen, setIsShopOpen] = useState(false);
+  const [isWomenOpen, setIsWomenOpen] = useState(false);
+  const [isMenOpen, setIsMenOpen] = useState(false);  
+  const user = useSelector((state: RootState) => state.user);
   const categories = useSelector((state: RootState) => state.product.categories) as Category[];
   const cart = useSelector((state: RootState) => state.cart.cart);
   const favorite = useSelector((state: RootState) => state.cart.favorite);
@@ -63,16 +65,15 @@ export const NavBar = () => {
                           <li key={item.id}>
                             <Link
                               to={`/shop/${item.gender}/${item.code.replace(/^k:/, "")}/${item.id}`}
+                              onClick={() => {
+                                setIsShopOpen(false);
+                                setIsMobileMenuOpen(false);
+                              }}
                             >
                               {item.title}
                             </Link>
                           </li>
                         ))}
-                      {/* <li><Link to="/shop">Bags</Link></li>
-                      <li><Link to="/shop">Belts</Link></li>
-                      <li><Link to="/shop">Cosmetics</Link></li>
-                      <li><Link to="/shop">Bags</Link></li>
-                      <li><Link to="/shop">Hats</Link></li> */}
                     </ul>
                   </div>
                   <div className="w-1/2 text-left flex flex-col gap-10">
@@ -85,16 +86,15 @@ export const NavBar = () => {
                           <li key={item.id}>
                             <Link
                               to={`/shop/${item.gender}/${item.code.replace(/^e:/, "")}/${item.id}`}
+                              onClick={() => {
+                                setIsShopOpen(false);
+                                setIsMobileMenuOpen(false);
+                              }}
                             >
                               {item.title}
                             </Link>
                           </li>
                         ))}
-                      {/* <li><Link to="/shop">Bags</Link></li>
-                      <li><Link to="/shop">Belts</Link></li>
-                      <li><Link to="/shop">Cosmetics</Link></li>
-                      <li><Link to="/shop">Bags</Link></li>
-                      <li><Link to="/shop">Hats</Link></li> */}
                     </ul>
                   </div>
                 </div>
@@ -133,7 +133,7 @@ export const NavBar = () => {
         <nav className='flex xl:hidden flex-row text-2xl gap-6 text-slate-800'>
           <Link to='#'><FontAwesomeIcon icon={faUser} /></Link>
           <Link to='#'><FontAwesomeIcon icon={faMagnifyingGlass} /></Link>
-          <Link to='#'><FontAwesomeIcon icon={faCartShopping} /></Link>
+          <Link to='/cart'><FontAwesomeIcon icon={faCartShopping} /></Link>
           <button onClick={toggleMobileMenu}>
             <TbMenuDeep />
           </button>
@@ -144,7 +144,92 @@ export const NavBar = () => {
       {isMobileMenuOpen && (
         <div className="xl:hidden flex flex-col items-center gap-8 py-24 text-3xl font-normal text-neutral-500 transition-all duration-300 ease-out transform opacity-0 translate-y-[-20px] animate-slide-down">
           <Link to="/" className="hover:font-semibold">Home</Link>
-          <Link to="/shop" className="hover:font-semibold">Product</Link>
+
+          {/* Product dropdown toggle */}
+          <div className="w-full flex flex-col items-center">
+            <button
+              className="hover:font-semibold"
+              onClick={() => {
+                setIsShopOpen((prev) => !prev);
+                // Alt menüler kapalı başlasın
+                setIsWomenOpen(false);
+                setIsMenOpen(false);
+              }}
+            >
+              Product
+            </button>
+
+            {isShopOpen && (
+              <div className="w-full mt-6 flex flex-col items-center gap-6 text-2xl">
+                {/* Kadın başlığı */}
+                <button
+                  className="font-bold text-slate-800 hover:text-sky-600"
+                  onClick={() => {
+                    setIsWomenOpen((prev) => !prev);
+                    setIsMenOpen(false); // Erkek kapanır
+                  }}
+                >
+                  Kadın
+                </button>
+
+                {/* Kadın kategorileri */}
+                {isWomenOpen && (
+                  <div className="flex flex-col items-center gap-2">
+                    {categories
+                      .filter((item) => item.gender === "k")
+                      .map((item) => (
+                        <Link
+                          key={item.id}
+                          to={`/shop/${item.gender}/${item.code.replace(/^k:/, "")}/${item.id}`}
+                          className="text-neutral-500 hover:font-semibold"
+                          onClick={() => {
+                            setIsShopOpen(false);
+                            setIsMobileMenuOpen(false);
+                            setIsWomenOpen(false);
+                          }}
+                        >
+                          {item.title}
+                        </Link>
+                      ))}
+                  </div>
+                )}
+
+                {/* Erkek başlığı */}
+                <button
+                  className="font-bold text-slate-800 hover:text-sky-600"
+                  onClick={() => {
+                    setIsMenOpen((prev) => !prev);
+                    setIsWomenOpen(false); // Kadın kapanır
+                  }}
+                >
+                  Erkek
+                </button>
+
+                {/* Erkek kategorileri */}
+                {isMenOpen && (
+                  <div className="flex flex-col items-center gap-2">
+                    {categories
+                      .filter((item) => item.gender === "e")
+                      .map((item) => (
+                        <Link
+                          key={item.id}
+                          to={`/shop/${item.gender}/${item.code.replace(/^e:/, "")}/${item.id}`}
+                          className="text-neutral-500 hover:font-semibold"
+                          onClick={() => {
+                            setIsShopOpen(false);
+                            setIsMobileMenuOpen(false);
+                            setIsMenOpen(false);
+                          }}
+                        >
+                          {item.title}
+                        </Link>
+                      ))}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
           <Link to="/pricing" className="hover:font-semibold">Pricing</Link>
           <Link to="/contact" className="hover:font-semibold">Contact</Link>
         </div>

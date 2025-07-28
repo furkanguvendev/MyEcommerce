@@ -137,7 +137,9 @@ export const ShopProduct = () => {
                     <ShopCard key={i} product={p} />
                 ))}
             </div>
-            <div className="flex">
+
+            {/* {DESKTOP PAGINATION} */}
+            <div className="hidden xl:flex">
                 <button
                     onClick={handleFirst}
                     className={`border border-neutral-500 font-bold text-sm xl:text-lg w-28 h-24 rounded-l-[12px] 
@@ -164,6 +166,28 @@ export const ShopProduct = () => {
                 >
                     Next
                 </button>
+            </div>
+            {/* MOBILE PAGINATION */}
+            <div className="flex flex-col items-center gap-4 md:hidden">
+                <p className='text-sm font-medium text-neutral-500'>
+                    Page {pageSelected} of {totalPages}
+                </p>
+                <div className="flex gap-4">
+                    <button
+                    disabled={pageSelected === 1}
+                    onClick={handleFirst}
+                    className="bg-sky-500 text-white rounded-md px-4 py-2 disabled:opacity-50"
+                    >
+                    First
+                    </button>
+                    <button
+                    disabled={pageSelected === totalPages}
+                    onClick={handleNext}
+                    className="bg-sky-500 text-white rounded-md px-4 py-2 disabled:opacity-50"
+                    >
+                    Next
+                    </button>
+                </div>
             </div>
             <Clients />
         </div>

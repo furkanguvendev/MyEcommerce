@@ -10,7 +10,7 @@ export const Contact = () => {
   return (
     <div className="flex flex-col items-center font-montserrat">
         <NavBar />
-            <div className="w-4/5 flex flex-col xl:flex-row justify-between max-xl:gap-10">
+            <div className="w-4/5 flex flex-col xl:flex-row items-center justify-between max-xl:gap-10">
                 <div className="w-1/2 flex flex-col items-center xl:items-start justify-center gap-12">
                     <h4 className="text-base xl:text-2xl text-slate-800 font-bold">CONTACT US</h4>
                     <h1 className="text-40 xl:text-7xl text-slate-800 font-bold xl:text-left">Get in touch today!</h1>
