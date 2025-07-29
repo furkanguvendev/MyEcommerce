@@ -4,9 +4,12 @@ import { faMagnifyingGlass, faCartShopping, faHeart } from '@fortawesome/free-so
 import { IoIosArrowDown } from "react-icons/io";
 import { TbMenuDeep } from "react-icons/tb";
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import type { RootState } from '../store/reducers/rootReducers'; // Doğru path'e göre ayarlandı
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import type { RootState } from '../store/reducers/rootReducers';
+import { logoutUser } from '../store/actions/userActions';
+import { addCount, removeItem, takeCount } from '../store/actions/cartActions';
+import { BsTrash3 } from "react-icons/bs";
 
 type Category ={
   id: number;
@@ -18,6 +21,8 @@ type Category ={
 }
 
 export const NavBar = () => {
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [isWomenOpen, setIsWomenOpen] = useState(false);
@@ -26,6 +31,8 @@ export const NavBar = () => {
   const categories = useSelector((state: RootState) => state.product.categories) as Category[];
   const cart = useSelector((state: RootState) => state.cart.cart);
   const favorite = useSelector((state: RootState) => state.cart.favorite);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const toggleShopMenu = () => {
     setIsShopOpen((prev) => !prev);
@@ -111,9 +118,46 @@ export const NavBar = () => {
         {/* Desktop Right Nav */}
         <nav className='text-sky-500 text-xl hidden xl:flex flex-row gap-10'>
           {user.name ? (
-            <div className="flex items-center gap-2">
-              <FontAwesomeIcon icon={faUser} />
-              <span className="font-bold">{user.name}</span>
+            <div className="relative">
+              <button
+                onClick={() => setIsUserMenuOpen((prev) => !prev)}
+                className="flex items-center gap-2 focus:outline-none"
+              >
+                <FontAwesomeIcon icon={faUser} />
+                <span className="font-bold">{user.name}</span>
+              </button>
+
+              {isUserMenuOpen && (
+                <div className="absolute right-[-51.195px] mt-3 w-60 bg-white rounded-lg shadow-lg p-4 z-50">
+                  <div className="flex flex-col items-center gap-3 border-b pb-3 mb-3">
+                    <img
+                      src="https://avatars.mds.yandex.net/i?id=656277d6cfe6889ff622f5af314b49874d525672-16463591-images-thumbs&n=13"
+                      alt="User Avatar"
+                      className="w-10 h-10 rounded-full"
+                    />
+                    <div>
+                      <p className="font-semibold text-gray-800">{user.name}</p>
+                      <p className="text-sm text-gray-500">{user.email}</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => {
+                      navigate("/cart");
+                    }}
+                    className="w-full text-center pb-3 text-red-600 border-b hover:font-bold"
+                  >
+                    Sepetim
+                  </button>
+                  <button
+                    onClick={() => {
+                      dispatch(logoutUser());
+                    }}
+                    className="w-full text-center pt-3 text-red-600 hover:font-bold"
+                  >
+                    Çıkış Yap
+                  </button>
+                </div>
+              )}
             </div>
           ) : (
             <>
@@ -125,7 +169,74 @@ export const NavBar = () => {
             </>
           )}
           <Link to="#"><FontAwesomeIcon icon={faMagnifyingGlass} /></Link>
-          <Link to="/cart"><FontAwesomeIcon icon={faCartShopping} /> {cart.length}</Link>
+          <div className='relative'>
+            <button onClick={() => setIsCartOpen(!isCartOpen)}><FontAwesomeIcon icon={faCartShopping} /> {cart.length}</button>
+            {isCartOpen && (
+              <div className="absolute right-0 mt-4 w-96 bg-white rounded-lg shadow-lg z-50 p-4">
+                <h3 className="text-lg font-bold mb-4 text-slate-700">Sepetiniz</h3>
+
+                {cart.length === 0 ? (
+                  <p className="text-sm text-gray-500">Sepetinizde ürün yok.</p>
+                ) : (
+                  <div className="flex flex-col gap-4 max-h-80 overflow-y-auto">
+                    {cart.map(({ count, product }) => (
+                      <div
+                        key={product.id}
+                        className="flex gap-3 items-center border-b pb-4"
+                      >
+                        <img
+                          src={product.images[0]?.url}
+                          alt={product.name}
+                          className="w-16 h-16 object-cover rounded"
+                        />
+
+                        <div className="flex-1 flex flex-col">
+                          <span className="font-semibold text-sm text-slate-800">{product.name}</span>
+                          <span className="text-xs text-gray-500">Adet: {count}</span>
+                          <span className="text-sm font-bold text-sky-600">{(product.price * count).toFixed(2)} ₺</span>
+                        </div>
+
+                        {/* Miktar butonları */}
+                        <div className="flex items-center gap-2 border px-2 py-1 rounded-md">
+                          <button
+                            onClick={() => dispatch(takeCount(product.id))}
+                            className="px-2 text-lg font-bold text-gray-600 hover:text-sky-600"
+                          >
+                            -
+                          </button>
+                          <span className="text-sm font-medium text-slate-700">{count}</span>
+                          <button
+                            onClick={() => dispatch(addCount(product.id))}
+                            className="px-2 text-lg font-bold text-gray-600 hover:text-sky-600"
+                          >
+                            +
+                          </button>
+                        </div>
+
+                        {/* Silme butonu */}
+                        <button
+                          onClick={() => dispatch(removeItem(product.id))}
+                          className="ml-3 text-red-500 hover:text-red-600"
+                          title="Sil"
+                        >
+                          <BsTrash3 className="text-lg" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {cart.length > 0 && (
+                  <button
+                    onClick={() => navigate("/cart")} // useNavigate hook’unu unutma!
+                    className="mt-4 w-full bg-sky-600 hover:bg-sky-700 text-white py-2 rounded-lg text-sm font-semibold"
+                  >
+                    Sepete Git
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
           <Link to="#"><FontAwesomeIcon icon={faHeart} /> {favorite.length}</Link>
         </nav>
 
@@ -151,7 +262,6 @@ export const NavBar = () => {
               className="hover:font-semibold"
               onClick={() => {
                 setIsShopOpen((prev) => !prev);
-                // Alt menüler kapalı başlasın
                 setIsWomenOpen(false);
                 setIsMenOpen(false);
               }}
