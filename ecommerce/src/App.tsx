@@ -15,6 +15,7 @@ import axiosInstance from './api/axiosInstance';
 import { loginUser, logoutUser } from './store/actions/userActions';
 import { setCategories } from './store/actions/productActions';
 import { Cart } from './pages/Cart';
+import { Order } from './pages/Order';
 
 function App() {
   const dispatch = useDispatch();
@@ -78,7 +79,8 @@ function App() {
       <Route path='/teams' element={<Team />} />
       <Route path='/pricing' element={<Pricing />} />
       <Route path='/login' element={<Login />} />
-      <Route path="/cart" element={<Cart />} />
+      <Route path='/cart' element={<Cart />} />
+      <Route path='/order' element={<Order />} />
     </Routes>
   );
 }

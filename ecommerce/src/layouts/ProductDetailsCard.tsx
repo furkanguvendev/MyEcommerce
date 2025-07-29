@@ -8,7 +8,7 @@ import type { Product } from "../types&enums/types";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../store/store";
 import { addFav, addItem, removeFav, removeItem } from "../store/actions/cartActions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Props = {
     product: Product;
@@ -24,6 +24,17 @@ export const ProductDetailsCard = ({product}: Props) => {
         button1: false,
         button2: false,
     })
+
+    useEffect(() => {
+    const isInCart = cart.some(item => item.product.id === product.id);
+    const isInFav = favorite.some(item => item.id === product.id);
+    
+    setButtonColor({
+        button1: isInCart,
+        button2: isInFav,
+    });
+}, [product, cart, favorite]);
+
 
     const onToggleCart = () => {
         const isInCart = cart.some(item => item.product.id === product.id);
