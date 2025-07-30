@@ -1,4 +1,4 @@
-import type { Product } from "../../types&enums/types";
+import type { Address, Product } from "../../types&enums/types";
 
 export const SET_CART = 'SET_CART';
 export const ADD_ITEM = 'ADD_ITEM';
@@ -9,6 +9,9 @@ export const REMOVE_FAV = 'REMOVE_FAV';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const SET_PAYMENT = 'SET_PAYMENT';
 export const SET_ADDRESS = 'SET_ADDRESS';
+export const ADD_ADDRESS = 'ADD_ADDRESS';
+export const DELETE_ADDRESS ='DELETE_ADDRESS';
+export const UPDATE_ADDRESS = 'UPDATE_ADDRESS';
 
 export const setCart = (cart: { count: number; product: object }[]) => ({
   type: SET_CART,
@@ -50,7 +53,22 @@ export const setPayment = (payment: object) => ({
   payload: payment
 });
 
-export const setAddress = (address: object) => ({
+export const setAddress = (addresses: Address[]) => ({
   type: SET_ADDRESS,
-  payload: address
+  payload: addresses
 });
+
+export const addAddress = (address: Address) => ({
+  type: ADD_ADDRESS,
+  payload: address
+})
+
+export const deleteAddress = (id: number) => ({
+  type: DELETE_ADDRESS,
+  payload: id
+})
+
+export const updateAddress = (address: Address) => ({
+  type: UPDATE_ADDRESS,
+  payload: address
+})

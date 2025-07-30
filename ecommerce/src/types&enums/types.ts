@@ -24,3 +24,16 @@ export type Category = {
     rating: number;
     gender: string;
 }
+
+export type Address = {
+    id: number,
+    user_id: number,
+    title: string,
+    name: string,
+    surname: string,
+    phone: string,
+    city: string,
+    district: string,
+    neighborhood: string,
+    address: null
+}

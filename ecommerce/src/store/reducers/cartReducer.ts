@@ -1,4 +1,4 @@
-import type { Product } from "../../types&enums/types";
+import type { Address, Product } from "../../types&enums/types";
 
 export type CartProduct = {
   count: number;
@@ -9,14 +9,14 @@ export type CartState = {
   cart: CartProduct[];
   favorite: Product[];
   payment: object;
-  address: object;
+  address: Address[];
 };
 
 const initialState: CartState = {
   cart: [],
   favorite: [],
   payment: {},
-  address: {},
+  address: [],
 };
 
 export type Action =
@@ -28,7 +28,10 @@ export type Action =
   | { type: 'ADD_FAV', payload: Product }
   | { type: 'REMOVE_FAV', payload: number}
   | { type: 'SET_PAYMENT'; payload: object }
-  | { type: 'SET_ADDRESS'; payload: object };
+  | { type: 'SET_ADDRESS'; payload: Address[] }
+  | { type: 'ADD_ADDRESS'; payload: Address }
+  | { type: 'DELETE_ADDRESS'; payload: number}
+  | { type: 'UPDATE_ADDRESS'; payload: Address};
 
 const shoppingCartReducer = (state = initialState, action: Action): CartState => {
   switch (action.type) {
@@ -70,6 +73,20 @@ const shoppingCartReducer = (state = initialState, action: Action): CartState =>
       return { ...state, payment: action.payload };
     case 'SET_ADDRESS':
       return { ...state, address: action.payload };
+    case 'ADD_ADDRESS':
+      return { ...state, address: [ ...state.address, action.payload ]};
+    case 'DELETE_ADDRESS':
+      return {
+        ...state,
+        address: state.address.filter(item => item.id !== action.payload),
+      };
+    case 'UPDATE_ADDRESS':
+      return {
+        ...state,
+        address: state.address.map((addr) =>
+        addr.id === action.payload.id ? action.payload : addr
+        ),
+      };
     default:
       return state;
   }
