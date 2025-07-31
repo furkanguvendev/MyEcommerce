@@ -4,18 +4,20 @@ import { FooterSection } from "../layouts/FooterSection";
 import { useEffect, useMemo, useState } from "react";
 import axiosInstance from "../api/axiosInstance";
 import { useDispatch, useSelector } from "react-redux";
-import { addAddress, deleteAddress, setAddress, updateAddress } from "../store/actions/cartActions";
+import { addAddress, deleteAddress, setAddress, setPayment, updateAddress } from "../store/actions/cartActions";
 import { MdOutlineUpload } from "react-icons/md";
 import { FaPlus, FaTrashAlt } from "react-icons/fa";
-import type { RootState } from "../store/store";
+import type { AppDispatch, RootState } from "../store/store";
 import type { Address } from "../types&enums/types";
 import { useForm } from "react-hook-form";
+import { SiMastercard } from "react-icons/si";
 
 export const Order = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const token = localStorage.getItem("token");
   const cart = useSelector((state: RootState) => state.cart.cart);
+  const kartlar = useSelector((state: RootState) => state.cart.payment);
   const addresses = useSelector((state: RootState) => state.cart.address);
   const [addAddressOpen, setAddAddressOpen] = useState(false);
   const [updateAddressOpen, setUpdateAddressOpen] = useState(false);
@@ -37,6 +39,11 @@ export const Order = () => {
         }, 0)
     }, [cart]);
 
+    const generate16DigitNumber = () =>{
+        const digits = Array.from({ length: 16 }, () => Math.floor(Math.random() * 10)).join('');
+        return digits.match(/.{1,4}/g)?.join(' ') ?? '';
+    }
+
   useEffect(() => {
     if (!token) {
       navigate("/login");
@@ -49,6 +56,7 @@ export const Order = () => {
   }, [token, navigate, addresses]);
 
   useEffect(() => {
+    dispatch(setPayment());
     axiosInstance
       .get("/user/address", {
         headers: {
@@ -385,7 +393,16 @@ export const Order = () => {
 
         {step === 2 && (
             <section className="bg-white rounded-lg shadow-md p-6 min-h-[300px] flex items-center justify-center text-gray-500 text-lg"> {/* Placeholder for Payment Options */}
-                <p>Ödeme Seçenekleri bölümü burada yer alacak.</p>
+                {kartlar.map((card)=>(
+                    <div>
+                        <div>
+                            <img src=""/>
+                            <SiMastercard/>
+                        </div>
+                        <p>{card.id}</p>
+                        <button onClick={()=>console.log(generate16DigitNumber())}>Deneme</button>
+                    </div>
+                ))}
                 <button onClick={() => setStep(1)} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">Geri Dön</button>
             </section>
         )}

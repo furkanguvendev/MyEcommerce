@@ -1,4 +1,8 @@
+import type { ThunkDispatch } from "redux-thunk";
+import axiosInstance from "../../api/axiosInstance";
 import type { Address, Product } from "../../types&enums/types";
+import type { RootState } from "../store";
+import type { Action } from "redux";
 
 export const SET_CART = 'SET_CART';
 export const ADD_ITEM = 'ADD_ITEM';
@@ -8,6 +12,7 @@ export const TAKE_COUNT = 'TAKE_COUNT';
 export const REMOVE_FAV = 'REMOVE_FAV';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const SET_PAYMENT = 'SET_PAYMENT';
+export const ADD_PAYMENT = 'ADD_PAYMENT';
 export const SET_ADDRESS = 'SET_ADDRESS';
 export const ADD_ADDRESS = 'ADD_ADDRESS';
 export const DELETE_ADDRESS ='DELETE_ADDRESS';
@@ -48,10 +53,39 @@ export const removeFav = (id: number) => ({
   payload: id 
 })
 
-export const setPayment = (payment: object) => ({
-  type: SET_PAYMENT,
-  payload: payment
-});
+export const setPayment = () => async (dispatch: ThunkDispatch<RootState, unknown, Action>) => {
+  const token = localStorage.getItem("token");
+  try {
+    const res = await axiosInstance.get("/user/card", {
+      headers: {
+        Authoization: `Bearer ${token}`,
+      },
+    });
+    dispatch({
+      type: "SET_PAYMENT",
+      payload: res.data,
+    });
+  } catch (error) {
+    console.error("Kart verileri alınamadı: ", error);
+  }
+};
+
+export const addPayment = () => async (dispatch: ThunkDispatch<RootState, unknown, Action>) => {
+  const token = localStorage.getItem("token");
+  try {
+    const res = await axiosInstance.post("/user/card", {
+      headers: {
+        Authoization: `Bearer ${token}`,
+      },
+    });
+    dispatch({
+      type: "ADD_PAYMENT",
+      payload: res.data[0],
+    });
+  } catch (error) {
+    console.error("Kart bilgileri eklenemedi: ", error);
+  }
+};
 
 export const setAddress = (addresses: Address[]) => ({
   type: SET_ADDRESS,

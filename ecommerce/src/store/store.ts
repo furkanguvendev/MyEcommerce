@@ -8,5 +8,5 @@ export type { RootState } from './reducers/rootReducers';
 
 // Store oluştur
 const store = createStore(rootReducer, undefined, applyMiddleware(thunk, logger));
-
+export type AppDispatch = typeof store.dispatch;
 export default store;
