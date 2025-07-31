@@ -4,9 +4,11 @@ import { FooterSection } from "../layouts/FooterSection"
 import type { RootState } from "../store/store"
 import { CartCard } from "../components/CartCard"
 import { useMemo } from "react"
+import { useNavigate } from "react-router-dom"
 
 export const Cart = () => {
 
+    const navigate = useNavigate();
     const cartItems = useSelector((state: RootState) => state.cart.cart);
 
     const totalPrice = useMemo(()=> {
@@ -82,7 +84,7 @@ export const Cart = () => {
                 <span className="font-bold">{sellCount}</span> adet satıldı!
                 </p>
 
-                <button className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition-colors">
+                <button onClick={()=>navigate("/order")} className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition-colors">
                 Siparişi Onayla
                 </button>
             </div>
