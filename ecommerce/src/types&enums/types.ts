@@ -37,3 +37,11 @@ export type Address = {
     neighborhood: string,
     address: null
 }
+
+export type CreditCard = {
+    id: number,
+    card_no: string,
+    expire_month: number,
+    expire_year: number,
+    name_on_card: string,
+}

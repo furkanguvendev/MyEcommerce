@@ -1,4 +1,4 @@
-import type { Address, Product } from "../../types&enums/types";
+import type { Address, CreditCard, Product } from "../../types&enums/types";
 
 export type CartProduct = {
   count: number;
@@ -8,14 +8,14 @@ export type CartProduct = {
 export type CartState = {
   cart: CartProduct[];
   favorite: Product[];
-  payment: object;
+  payment: CreditCard[];
   address: Address[];
 };
 
 const initialState: CartState = {
   cart: [],
   favorite: [],
-  payment: {},
+  payment: [],
   address: [],
 };
 
@@ -27,7 +27,8 @@ export type Action =
   | { type: 'TAKE_COUNT'; payload: number }
   | { type: 'ADD_FAV', payload: Product }
   | { type: 'REMOVE_FAV', payload: number}
-  | { type: 'SET_PAYMENT'; payload: object }
+  | { type: 'SET_PAYMENT'; payload: CreditCard[] }
+  | { type: 'ADD_PAYMENT'; payload: CreditCard }
   | { type: 'SET_ADDRESS'; payload: Address[] }
   | { type: 'ADD_ADDRESS'; payload: Address }
   | { type: 'DELETE_ADDRESS'; payload: number}
@@ -71,6 +72,11 @@ const shoppingCartReducer = (state = initialState, action: Action): CartState =>
     };
     case 'SET_PAYMENT':
       return { ...state, payment: action.payload };
+    case 'ADD_PAYMENT':
+      return {
+        ...state,
+        payment: [ ...state.payment, action.payload]
+      };
     case 'SET_ADDRESS':
       return { ...state, address: action.payload };
     case 'ADD_ADDRESS':
