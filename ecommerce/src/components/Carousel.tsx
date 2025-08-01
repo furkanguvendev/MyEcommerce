@@ -4,6 +4,7 @@ import Picture2 from "../assets/homeslide2.png";
 import Picture3 from "../assets/homeslide3.png"; */
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import "../styles/Carousel.css";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
 pictures: {
@@ -43,6 +44,7 @@ export const Carousel: React.FC<Props> = ({
 }) => {
 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
@@ -108,7 +110,7 @@ export const Carousel: React.FC<Props> = ({
         </p>
         <div>
           <p>{Object.values(pictures)[index].price}</p>
-          <button className="bg-green-500 text-base xl:text-2xl w-44 xl:w-[300px] h-12 xl:h-20 mt-4 rounded-md">
+          <button onClick={()=> navigate("/shop/k/tisort/1")} className="bg-green-500 text-base xl:text-2xl w-44 xl:w-[300px] h-12 xl:h-20 mt-4 rounded-md">
             {button}
           </button>
         </div>

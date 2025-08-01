@@ -18,7 +18,7 @@ export const ShopCards = () => {
             <div className="flex flex-grow  gap-10 flex-col xl:flex-row justify-between">
                 <div className="flex-grow relative">
                     <img className="flex-grow" src={Card2} alt=""/>
-                    <a className="absolute z-10 left-[6%] bottom-[6%] w-40 xl:w-44 h-12 xl:h-16 bg-white flex items-center justify-center font-bold text-xl text-slate-800" href="#">WOMEN</a>
+                    <a className="absolute z-10 left-[6%] bottom-[6%] w-40 xl:w-44 h-12 xl:h-16 bg-white flex items-center justify-center font-bold text-xl text-slate-800" href="/shop/k/tisort/1">WOMEN</a>
                 </div>
                 <div className="flex flex-grow flex-col gap-5 justify-between">
                     <div className="flex-grow relative">

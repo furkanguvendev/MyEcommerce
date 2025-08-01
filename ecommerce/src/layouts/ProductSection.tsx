@@ -1,18 +1,30 @@
-import Picture1 from "../assets/fixed-height1.png"
-import Picture2 from "../assets/fixed-height2.png"
-import Picture3 from "../assets/fixed-height3.png"
-import Picture4 from "../assets/fixed-height4.png"
-import Picture5 from "../assets/fixed-height5.png"
-import Picture6 from "../assets/fixed-height6.png"
-import Picture7 from "../assets/fixed-height7.png"
-import Picture8 from "../assets/fixed-height8.png"
+import { useEffect } from "react"
+// import Picture1 from "../assets/fixed-height1.png"
+// import Picture2 from "../assets/fixed-height2.png"
+// import Picture3 from "../assets/fixed-height3.png"
+// import Picture4 from "../assets/fixed-height4.png"
+// import Picture5 from "../assets/fixed-height5.png"
+// import Picture6 from "../assets/fixed-height6.png"
+// import Picture7 from "../assets/fixed-height7.png"
+// import Picture8 from "../assets/fixed-height8.png"
 import { Carousel } from "../components/Carousel"
 import { ProductCard } from "../components/ProductCard"
 import data from "../data"
+import { useDispatch, useSelector } from "react-redux"
+import type { AppDispatch, RootState } from "../store/store"
+import { bestProduct } from "../store/actions/productActions"
 
-const images = [Picture1, Picture2, Picture3, Picture4, Picture5, Picture6, Picture7, Picture8];
+// const images = [Picture1, Picture2, Picture3, Picture4, Picture5, Picture6, Picture7, Picture8];
 
 export const ProductSection = () => {
+
+  const topProducts = useSelector((state: RootState) => state.product.productList);
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(()=>{
+    dispatch(bestProduct());
+  },[dispatch])
+
   return (
     <>
       <div className="py-20">
@@ -20,8 +32,8 @@ export const ProductSection = () => {
         <h3 className="text-slate-800 text-3xl font-bold pb-4">BESTSELLER PRODUCTS</h3>
         <p className="text-neutral-500 text-lg font-normal pb-12 sm:pb-28">Problems trying to resolve the conflict between</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-36 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-64">
-          {images.map((image, index) => (
-            <ProductCard key={index} picture={image} />
+          {topProducts.map((product, index) => (
+            <ProductCard key={index} product={product} />
           ))}
         </div>
       </div>

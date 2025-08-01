@@ -27,7 +27,8 @@ export type Action =
   | { type: 'SET_FETCH_STATE'; payload: ProductState['fetchState'] }
   | { type: 'SET_LIMIT'; payload: number }
   | { type: 'SET_OFFSET'; payload: number }
-  | { type: 'SET_FILTER'; payload: string };
+  | { type: 'SET_FILTER'; payload: string }
+  | { type: 'BEST_PRODUCT'; payload: Product[]};
 
 const productReducer = (state = initialState, action: Action): ProductState => {
   switch (action.type) {
@@ -45,6 +46,8 @@ const productReducer = (state = initialState, action: Action): ProductState => {
       return { ...state, offset: action.payload };
     case 'SET_FILTER':
       return { ...state, filter: action.payload };
+    case 'BEST_PRODUCT':
+      return { ...state, productList: action.payload};
     default:
       return state;
   }
