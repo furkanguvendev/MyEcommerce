@@ -45,3 +45,23 @@ export type CreditCard = {
     expire_year: number,
     name_on_card: string,
 }
+
+export type CreditCardInput = Omit<CreditCard, "id">;
+
+export type OrderProduct = {
+    product_id: number,
+    count: number,
+    detail: string
+}
+
+export type LastOrder = {
+    address_id: number,
+    order_date: string,
+    card_no: number,
+    card_name: string,
+    card_expire_month: number,
+    card_expire_year: number,
+    card_ccv: number,
+    price: number,
+    products: OrderProduct[],
+}

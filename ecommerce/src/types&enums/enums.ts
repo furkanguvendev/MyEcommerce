@@ -9,7 +9,7 @@ export type Roles = typeof Roles[keyof typeof Roles];
 export const BankList = {
   Ziraat: {
     name: "Ziraat Bankası",
-    img: "https://www.resmievrak.com/wp-content/uploads/Ziraat-Bankasi-Emekliye-Faizsiz-Kredi-1-300x128.jpg"
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Ziraat_Bankas%C4%B1_2025_Logo.svg/250px-Ziraat_Bankas%C4%B1_2025_Logo.svg.png"
   },
   IsBank: {
     name: "Türkiye İş Bankası",
@@ -17,19 +17,19 @@ export const BankList = {
   },
   Garanti: {
     name: "Garanti BBVA",
-    img: "https://www.harcamaitirazi.com/dosyalar/garanti-bankasi-logo.png"
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Garanti_Bankas%C4%B1_Logo.svg/250px-Garanti_Bankas%C4%B1_Logo.svg.png"
   },
   Akbank: {
     name: "Akbank",
-    img: "https://www.harcamaitirazi.com/dosyalar/garanti-bankasi-logo.png"
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Akbank_logo.svg/250px-Akbank_logo.svg.png"
   },
   Halkbank: {
     name: "Halkbank",
-    img: "https://www.halkbank.com.tr/content/dam/halkbank/tr/gorseller/bankam%C4%B1z/logolarimiz/halkbank-85yil-logo-disi-kullanim.jpg"
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Halkbank_logo.svg/250px-Halkbank_logo.svg.png"
   },
   Vakifbank: {
     name: "VakıfBank",
-    img: "https://cazip.com/public/storage/bank_image/GhEaFfYGSCpfT3sMyGwhZuuplYWUfCayKlIraVEk.png"
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Vak%C4%B1fbank_logo.svg/250px-Vak%C4%B1fbank_logo.svg.png"
   },
   YapiKredi: {
     name: "Yapı Kredi",

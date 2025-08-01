@@ -84,8 +84,16 @@ export const Cart = () => {
                 <span className="font-bold">{sellCount}</span> adet satıldı!
                 </p>
 
-                <button onClick={()=>navigate("/order")} className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition-colors">
-                Siparişi Onayla
+                <button 
+                    onClick={() => navigate("/order")} 
+                    disabled={cartItems.length === 0}
+                    className={`w-full py-2 rounded transition-colors
+                        ${cartItems.length === 0 
+                        ? "bg-gray-400 text-gray-700 cursor-not-allowed" 
+                        : "bg-black text-white hover:bg-gray-800"}
+                    `}
+                >
+                    Siparişi Onayla
                 </button>
             </div>
         </div>
