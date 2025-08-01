@@ -6,6 +6,8 @@ import axiosInstance from "../api/axiosInstance";
 import { loginUser } from "../store/actions/userActions";
 import { AxiosError } from "axios";
 import loginbg from "../assets/loginbg.jpg";
+import { BsInfoCircleFill } from "react-icons/bs";
+
 
 type LoginFormInputs = {
   email: string;
@@ -23,6 +25,7 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const [rememberMe, setRememberMe] = useState(false);
+  const [infoOpen, setInfoOpen] = useState(false);
 
   const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
     try {
@@ -127,10 +130,28 @@ export const Login = () => {
             Kayıt ol
           </a>
         </p>
+        <button onClick={()=> setInfoOpen(true)}><BsInfoCircleFill className="text-blue-800 text-2xl"/></button>
+          {infoOpen && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div className="bg-white w-[90%] max-w-sm p-6 rounded-xl shadow-xl relative text-sm text-gray-800">
+                <button
+                  className="absolute top-2 right-3 text-xl text-gray-600 hover:text-red-500"
+                  onClick={() => setInfoOpen(false)}
+                >
+                  ×
+                </button>
+                <h3 className="text-lg font-semibold mb-2">Test Kullanıcıları</h3>
+                <p className="mb-1">Aşağıdaki hesaplarla giriş yapabilirsiniz:</p>
+                <ul className="list-disc list-inside text-gray-700 text-sm space-y-1">
+                  <li>customer@commerce.com</li>
+                  <li>store@commerce.com</li>
+                  <li>admin@commerce.com</li>
+                </ul>
+                <p className="mt-3 font-semibold">Şifre: <span className="font-mono">123456</span></p>
+              </div>
+            </div>
+          )}
       </form>
-      <button onClick={() => console.log(rememberMe)}>
-        yazdır
-      </button>
     </div>
   );
 };

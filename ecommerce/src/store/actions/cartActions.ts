@@ -1,6 +1,6 @@
 import type { ThunkDispatch } from "redux-thunk";
 import axiosInstance from "../../api/axiosInstance";
-import type { Address, Product } from "../../types&enums/types";
+import type { Address, CreditCardInput, Product } from "../../types&enums/types";
 import type { RootState } from "../store";
 import type { Action } from "redux";
 
@@ -70,10 +70,10 @@ export const setPayment = () => async (dispatch: ThunkDispatch<RootState, unknow
   }
 };
 
-export const addPayment = () => async (dispatch: ThunkDispatch<RootState, unknown, Action>) => {
+export const addPayment = (cardData: CreditCardInput) => async (dispatch: ThunkDispatch<RootState, unknown, Action>) => {
   const token = localStorage.getItem("token");
   try {
-    const res = await axiosInstance.post("/user/card", {
+    const res = await axiosInstance.post("/user/card", cardData, {
       headers: {
         Authoization: `Bearer ${token}`,
       },
