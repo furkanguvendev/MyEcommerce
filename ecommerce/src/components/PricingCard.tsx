@@ -1,4 +1,3 @@
-import React from 'react'
 import { RiCheckFill } from 'react-icons/ri';
 
 type Props = {
