@@ -132,8 +132,15 @@ export const ShopProduct = () => {
                     </button>
                 </div>
             </div>
+            {product.length === 0 && (
+                    <div className="flex items-center justify-center text-center">
+                        <p className="text-xl md:text-2xl font-semibold text-gray-600 bg-white bg-opacity-80 px-6 py-4 rounded-xl shadow-md">
+                            Yeni ürünler çok yakında sizlerle!
+                        </p>
+                    </div>
+            )}
             <div className='w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-10 gap-y-16 my-16'>
-                {product.map((p, i) => (
+                {product.map((p, i) => ( 
                     <ShopCard key={i} product={p} />
                 ))}
             </div>
