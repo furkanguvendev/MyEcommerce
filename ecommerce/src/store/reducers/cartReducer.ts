@@ -1,4 +1,4 @@
-import type { Address, CreditCard, Product } from "../../types&enums/types";
+import type { Address, CreditCard, LastOrder, Product } from "../../types&enums/types";
 
 export type CartProduct = {
   count: number;
@@ -10,6 +10,7 @@ export type CartState = {
   favorite: Product[];
   payment: CreditCard[];
   address: Address[];
+  order: LastOrder;
 };
 
 const initialState: CartState = {
@@ -17,6 +18,17 @@ const initialState: CartState = {
   favorite: [],
   payment: [],
   address: [],
+  order: {
+    address_id: 0,
+    order_date: "",
+    card_no: 0,
+    card_name: "",
+    card_expire_month: 0,
+    card_expire_year: 0,
+    card_ccv: 0,
+    price: 0,
+    products: []
+  },
 };
 
 export type Action =
@@ -32,7 +44,9 @@ export type Action =
   | { type: 'SET_ADDRESS'; payload: Address[] }
   | { type: 'ADD_ADDRESS'; payload: Address }
   | { type: 'DELETE_ADDRESS'; payload: number}
-  | { type: 'UPDATE_ADDRESS'; payload: Address};
+  | { type: 'UPDATE_ADDRESS'; payload: Address}
+  | { type: 'CREATE_ORDER'; payload: LastOrder}
+  | { type: 'DELETE_ORDER'};
 
 const shoppingCartReducer = (state = initialState, action: Action): CartState => {
   switch (action.type) {
@@ -93,6 +107,16 @@ const shoppingCartReducer = (state = initialState, action: Action): CartState =>
         addr.id === action.payload.id ? action.payload : addr
         ),
       };
+    case 'CREATE_ORDER':
+      return {
+        ...state,
+        order: action.payload,
+      };
+    case 'DELETE_ORDER':
+      return {
+        ...state,
+        order: initialState.order,
+      }
     default:
       return state;
   }

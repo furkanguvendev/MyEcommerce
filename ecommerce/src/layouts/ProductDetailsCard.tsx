@@ -24,6 +24,7 @@ export const ProductDetailsCard = ({product}: Props) => {
         button1: false,
         button2: false,
     })
+    const [showInfo, setShowInfo] = useState(false);
 
     useEffect(() => {
     const isInCart = cart.some(item => item.product.id === product.id);
@@ -99,7 +100,20 @@ export const ProductDetailsCard = ({product}: Props) => {
                     <p className="w-8 xl:w-10 aspect-square rounded-full bg-slate-800"></p>
                 </div>
                 <div className="flex flex-row items-center gap-3">
-                    <button className="w-36 xl:w-52 h-11 xl:h-16 bg-sky-500 text-white text-sm xl:text-xl font-bold rounded-md">Select Options</button>
+                    <button
+                        onClick={() => {
+                            setShowInfo(true);
+                            setTimeout(() => setShowInfo(false), 3000);
+                        }}
+                        className="w-36 xl:w-52 h-11 xl:h-16 bg-sky-500 text-white text-sm xl:text-xl font-bold rounded-md"
+                    >
+                        Select Options
+                    </button>
+                    {showInfo && (
+                        <div className="fixed top-20 left-1/2 transform -translate-x-1/2 bg-white text-slate-800 border border-sky-500 px-6 py-3 rounded-lg shadow-lg z-50 text-center text-sm xl:text-base font-medium">
+                            Çeşitlerimiz şu anda mevcut değil. Yakında eklenecek.
+                        </div>
+                    )}
                     <button
                         onClick={onToggleFav}
                         className="border w-10 h-10 xl:w-14 xl:h-14 flex justify-center items-center border-neutral-500 rounded-full"

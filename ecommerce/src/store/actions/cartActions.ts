@@ -1,6 +1,6 @@
 import type { ThunkDispatch } from "redux-thunk";
 import axiosInstance from "../../api/axiosInstance";
-import type { Address, CreditCardInput, Product } from "../../types&enums/types";
+import type { Address, CreditCardInput, LastOrder, Product } from "../../types&enums/types";
 import type { RootState } from "../store";
 import type { Action } from "redux";
 
@@ -17,6 +17,8 @@ export const SET_ADDRESS = 'SET_ADDRESS';
 export const ADD_ADDRESS = 'ADD_ADDRESS';
 export const DELETE_ADDRESS ='DELETE_ADDRESS';
 export const UPDATE_ADDRESS = 'UPDATE_ADDRESS';
+export const CREATE_ORDER = 'CREATE_ORDER';
+export const DELETE_ORDER = 'DELETE_ORDER';
 
 export const setCart = (cart: { count: number; product: object }[]) => ({
   type: SET_CART,
@@ -105,4 +107,13 @@ export const deleteAddress = (id: number) => ({
 export const updateAddress = (address: Address) => ({
   type: UPDATE_ADDRESS,
   payload: address
+})
+
+export const createOrder = (order: LastOrder) => ({
+  type: CREATE_ORDER,
+  payload: order
+})
+
+export const deleteOrder = () => ({
+  type: DELETE_ORDER,
 })
