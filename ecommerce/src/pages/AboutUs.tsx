@@ -21,7 +21,7 @@ export const AboutUs = () => {
                         <h3 className="text-slate-800 text-2xl font-bold max-xl:hidden">ABOUT COMPANY</h3>
                         <h1 className="text-slate-800 text-40 xl:text-7xl font-bold">ABOUT US</h1>
                         <p className="w-[clamp(288px,25vw,450px)] xl:text-left text-neutral-500 text-xl xl:text-2xl font-normal">We know how large objects will act, but things on a small scale</p>
-                        <button className="w-[clamp(195px,25vw,259px)] h-[clamp(52px,7vw,70px)] text-sm xl:text-xl text-white bg-sky-500 rounded-md w">Get Quete Now</button>
+                        <button onClick={() => window.open('https://www.linkedin.com/in/devfurkang/', '_blank')} className="w-[clamp(195px,25vw,259px)] h-[clamp(52px,7vw,70px)] text-sm xl:text-xl text-white bg-sky-500 rounded-md w">Get Quote Now</button>
                     </div>
                 </div>
                 <img src={picture1} alt="" className="flex-1"/>

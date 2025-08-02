@@ -4,7 +4,7 @@ import { FooterSection } from "../layouts/FooterSection";
 import { useEffect, useMemo, useState } from "react";
 import axiosInstance from "../api/axiosInstance";
 import { useDispatch, useSelector } from "react-redux";
-import { addAddress, addPayment, deleteAddress, setAddress, setPayment, updateAddress } from "../store/actions/cartActions";
+import { addAddress, addPayment, createOrder, deleteAddress, setAddress, setPayment, updateAddress } from "../store/actions/cartActions";
 import { MdOutlineUpload } from "react-icons/md";
 import { FaPlus, FaTrashAlt } from "react-icons/fa";
 import type { AppDispatch, RootState } from "../store/store";
@@ -12,6 +12,7 @@ import type { Address, LastOrder } from "../types&enums/types";
 import { useForm } from "react-hook-form";
 import { SiMastercard } from "react-icons/si";
 import { BankList, type BankKey } from "../types&enums/enums";
+import { toast } from "react-toastify";
 
 export const Order = () => {
   const navigate = useNavigate();
@@ -491,6 +492,9 @@ export const Order = () => {
                                 ×
                             </button>
                             <h2 className="text-xl font-semibold mb-4">Yeni Kart Ekle</h2>
+                            <p className="text-sm text-gray-600 mb-4">
+                                (Veritabanı kısıtlamaları nedeniyle kart bilgileri girişi dikkate alınmayacak, sistem tarafından rastgele atanacaktır.)
+                            </p>
                             <form
                                 onSubmit={handleSubmitCard((data) => {
                                 dispatch(addPayment({
@@ -623,13 +627,17 @@ export const Order = () => {
                         </span>
                     </label>
                     <button
-                        onClick={() => setStep(2)}
+                        onClick={() => {
+                            dispatch(createOrder(lastOrder));
+                            navigate("/succesful");
+                            toast.success("Sipariş Başarı İle Alındı!")
+                        }}
                         className={`w-full py-3 rounded text-white font-semibold transition-colors ${
-                        lastOrder.address_id && agreemontStatus.paymentInfo
+                        lastOrder.card_ccv !== 0 && agreemontStatus.paymentInfo
                             ? "bg-green-600 hover:bg-green-700"
                             : "bg-gray-400 cursor-not-allowed"
                         }`}
-                        disabled={!lastOrder.address_id || !agreemontStatus.paymentInfo}
+                        disabled={lastOrder.card_ccv === 0 || !agreemontStatus.paymentInfo}
                     >
                         Ödeme Yap
                     </button>
