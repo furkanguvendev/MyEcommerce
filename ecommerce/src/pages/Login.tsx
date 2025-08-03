@@ -7,6 +7,7 @@ import { loginUser } from "../store/actions/userActions";
 import { AxiosError } from "axios";
 import loginbg from "../assets/loginbg.jpg";
 import { BsInfoCircleFill } from "react-icons/bs";
+import { toast } from "react-toastify";
 
 
 type LoginFormInputs = {
@@ -34,7 +35,10 @@ export const Login = () => {
 
       // Redux'a user bilgilerini gönder
       dispatch(loginUser(user));
-
+      toast.success("🎉 Giriş başarılı!", {
+        className: "custom-toast",
+        progressClassName: "custom-progress"
+      });
       // Token'ı localStorage ya da sessionStorage'a kaydet
       if (rememberMe) {
         localStorage.setItem("token", user.token);

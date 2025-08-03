@@ -74,7 +74,7 @@ export const ProductDetailsCard = ({product}: Props) => {
     }
 
   return (
-    <div className="w-full flex justify-center bg-zinc-50 xl:pb-20">
+    <div className="w-full flex justify-center bg-zinc-50 xl:pb-32">
         <div className="w-11/12">
         <div className="hidden xl:flex flex-row h-24 xl:h-32 max-xl:justify-center items-center">
             <p className="text-slate-800 font-bold xl:text-xl">Home</p>

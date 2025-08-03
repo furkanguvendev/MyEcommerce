@@ -9,7 +9,6 @@ import {FaHooli, FaLyft, FaPiedPiperHat, FaStripe, FaAws, FaRedditAlien} from "r
 import { ProductDetailsCard } from "../layouts/ProductDetailsCard";
 import { ProductDescrip } from "../layouts/ProductDescrip";
 import { ProductDetailsBest } from "../layouts/ProductDetailsBest";
-import { toast } from "react-toastify";
 
 export const ProductDetail = () => {
   const { categoryId, productId } = useParams();
@@ -25,7 +24,6 @@ export const ProductDetail = () => {
         setProduct(res.data);
         console.log(res.data);
         setLoading(false);
-        toast.success("Ürün Bilgileri Başarı İle Getirildi!!")
       })
       .catch(err => {
         console.error("Ürün alınırken hata oluştu", err);
