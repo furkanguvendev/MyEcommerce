@@ -6,7 +6,7 @@ import Card5 from "../assets/shopcardmob1.png";
 
 export const ShopCards = () => {
   return (
-    <div className="w-full h-full bg-zinc-50 flex flex-col items-center py-28">
+    <div className="w-full min-h-fit bg-zinc-50 flex flex-col items-center py-28">
         <h1 className="text-slate-800 font-bold text-3xl pb-3">EDITOR'S PICK</h1>
         <p className="text-neutral-500 font-normal text-lg pb-16">Problems trying to resolve <br className="block xl:hidden"/>the conflict between</p>
         <div className="w-3/4 flex flex-col xl:flex-row gap-10 items-center">

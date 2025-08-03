@@ -71,7 +71,7 @@ export const ShopProduct = () => {
             .catch(() => {
                 console.log("Veri getirilemedi.");
             });
-    }, [categoryId, pageSelected, searchTerm, sortOption]);
+    }, [categoryId, dispatch, pageSelected, searchTerm, sortOption]);
 
 
     useEffect(() => {
@@ -91,7 +91,7 @@ export const ShopProduct = () => {
     };
 
     const handleFilter = () => {
-        setPageSelected(1); // Filtrelemeden sonra 1. sayfaya git
+        setPageSelected(1);
     };
 
     return (
@@ -132,14 +132,25 @@ export const ShopProduct = () => {
                     </button>
                 </div>
             </div>
-            <div className='w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-10 gap-y-16 my-16'>
+            {product.length === 0 && (
+                <p className="text-center text-slate-700 font-bold text-xl sm:text-2xl md:text-3xl xl:text-4xl py-12 px-4">
+                    Yeni ürünler çok yakında satışta!
+                </p>
+            )}
+            <div
+                className={`w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-10 gap-y-16 my-16 transition-all duration-300 ${
+                    product.length === 0 ? "hidden" : ""
+                }`}
+                >
                 {product.map((p, i) => (
                     <ShopCard key={i} product={p} />
                 ))}
             </div>
 
             {/* {DESKTOP PAGINATION} */}
-            <div className="hidden xl:flex">
+            <div className={`hidden xl:${
+                product.length === 0 ? "hidden" : "flex"
+            }`}>
                 <button
                     onClick={handleFirst}
                     className={`border border-neutral-500 font-bold text-sm xl:text-lg w-28 h-24 rounded-l-[12px] 
@@ -168,7 +179,9 @@ export const ShopProduct = () => {
                 </button>
             </div>
             {/* MOBILE PAGINATION */}
-            <div className="flex flex-col items-center gap-4 md:hidden">
+            <div className={`xl:hidden ${
+                product.length === 0 ? "hidden" : "flex flex-col items-center gap-4"
+            }`}>
                 <p className='text-sm font-medium text-neutral-500'>
                     Page {pageSelected} of {totalPages}
                 </p>

@@ -18,6 +18,7 @@ import { Cart } from './pages/Cart';
 import { Order } from './pages/Order';
 import { Succesful } from './pages/Succesful';
 import { ToastContainer } from 'react-toastify';
+import { ScrollToTop } from './components/ScrollToTop';
 
 function App() {
   const dispatch = useDispatch();
@@ -73,6 +74,7 @@ function App() {
   return (
     <>
       <ToastContainer position="top-right" autoClose={3000} theme="colored" />
+      <ScrollToTop />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/shop/:gender/:categoryName/:categoryId' element={<Shop />} />

@@ -27,6 +27,7 @@ export const NavBar = () => {
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [isWomenOpen, setIsWomenOpen] = useState(false);
   const [isMenOpen, setIsMenOpen] = useState(false);  
+  const [isMobileUserMenuOpen, setIsMobileUserMenuOpen] = useState(false);
   const user = useSelector((state: RootState) => state.user);
   const categories = useSelector((state: RootState) => state.product.categories) as Category[];
   const cart = useSelector((state: RootState) => state.cart.cart);
@@ -241,13 +242,54 @@ export const NavBar = () => {
         </nav>
 
         {/* Mobile Right Nav */}
-        <nav className='flex xl:hidden flex-row text-2xl gap-6 text-slate-800'>
-          <Link to='#'><FontAwesomeIcon icon={faUser} /></Link>
-          <Link to='#'><FontAwesomeIcon icon={faMagnifyingGlass} /></Link>
+        <nav className='flex xl:hidden flex-row text-2xl gap-6 text-slate-800 relative'>
+          {user.name ? (
+            <button onClick={() => setIsMobileUserMenuOpen(prev => !prev)}>
+              <FontAwesomeIcon icon={faUser} />
+            </button>
+          ) : (
+            <Link to="/login"><FontAwesomeIcon icon={faUser} /></Link>
+          )}
+          <Link to="#"><FontAwesomeIcon icon={faMagnifyingGlass} /></Link>
           <Link to='/cart'><FontAwesomeIcon icon={faCartShopping} /></Link>
           <button onClick={toggleMobileMenu}>
             <TbMenuDeep />
           </button>
+
+          {/* Mobile User Dropdown */}
+          {isMobileUserMenuOpen && user.name && (
+            <div className="absolute right-0 top-full mt-3 w-64 bg-white rounded-lg shadow-lg p-4 z-50 text-base">
+              <div className="flex flex-col items-center gap-3 border-b pb-3 mb-3">
+                <img
+                  src="https://avatars.mds.yandex.net/i?id=656277d6cfe6889ff622f5af314b49874d525672-16463591-images-thumbs&n=13"
+                  alt="User Avatar"
+                  className="w-12 h-12 rounded-full"
+                />
+                <div className="text-center">
+                  <p className="font-semibold text-gray-800">{user.name}</p>
+                  <p className="text-sm text-gray-500">{user.email}</p>
+                </div>
+              </div>
+              <button
+                onClick={() => {
+                  navigate("/cart");
+                  setIsMobileUserMenuOpen(false);
+                }}
+                className="w-full text-center py-2 text-red-600 border-b hover:font-bold"
+              >
+                Sepetim
+              </button>
+              <button
+                onClick={() => {
+                  dispatch(logoutUser());
+                  setIsMobileUserMenuOpen(false);
+                }}
+                className="w-full text-center py-2 text-red-600 hover:font-bold"
+              >
+                Çıkış Yap
+              </button>
+            </div>
+          )}
         </nav>
       </div>
 
