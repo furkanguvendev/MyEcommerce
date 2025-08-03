@@ -77,7 +77,7 @@ export const Carousel: React.FC<Props> = ({
     <div className="carousel font-montserrat w-full h-screen xl:h-full relative overflow-hidden">
       {/* Previous Button */}
       <button
-        className="carousel-button prev z-10"
+        className="carousel-button prev z-50"
         onClick={prevSlide}
         aria-label="Previous Slide"
       >
