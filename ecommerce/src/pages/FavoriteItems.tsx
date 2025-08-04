@@ -29,9 +29,9 @@ export const FavoriteItems = () => {
       .replace(/^-+|-+$/g, "");
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col min-h-screen items-center justify-between">
       <NavBar />
-      <div className="w-11/12 mx-auto">
+      <div className="w-11/12 mx-auto my-6">
         <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">Your Favorite Products</h1>
 
         {favItems.length === 0 ? (
