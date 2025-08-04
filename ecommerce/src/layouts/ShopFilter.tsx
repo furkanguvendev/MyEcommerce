@@ -15,8 +15,8 @@ export const ShopFilter = () => {
             </div>
         </div>
         <div className='flex flex-col xl:flex-row gap-4'>
-            {data.shopFilter.map((img, i)=>(
-                <ShopFilterCard key={i} img={img}/>
+            {data.shopFilter.map((item, i)=>(
+                <ShopFilterCard key={i} item={item}/>
             ))}
         </div>
     </div>

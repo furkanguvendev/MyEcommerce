@@ -13,7 +13,7 @@ export const ShopCards = () => {
             <div className="flex-grow relative">
                 <img className="hidden xl:block" src={Card1} alt=""/>
                 <img className="block xl:hidden" src={Card5} alt=""/>
-                <a className="absolute z-10 left-[6%] bottom-[6%] w-40 xl:w-56 h-12 xl:h-16 bg-white flex items-center justify-center font-bold text-xl text-slate-800" href="#">MEN</a>
+                <a className="absolute z-10 left-[6%] bottom-[6%] w-40 xl:w-44 h-12 xl:h-16 bg-white flex items-center justify-center font-bold text-xl text-slate-800" href="/shop/e/tisort/14">MEN</a>
             </div>
             <div className="flex flex-grow  gap-10 flex-col xl:flex-row justify-between">
                 <div className="flex-grow relative">
@@ -23,11 +23,11 @@ export const ShopCards = () => {
                 <div className="flex flex-grow flex-col gap-5 justify-between">
                     <div className="flex-grow relative">
                         <img className="flex-grow" src={Card3} alt="" />
-                        <a className="absolute z-10 left-[6%] bottom-[6%] w-40 xl:w-56 h-12 xl:h-16 bg-white flex items-center justify-center font-bold text-xl text-slate-800" href="#">ACCESSORIES</a>
+                        <a className="absolute z-10 left-[6%] bottom-[6%] w-40 xl:w-40 h-12 xl:h-16 bg-white flex items-center justify-center font-bold text-xl text-slate-800" href="/shop/k/ceket/3">JACKET</a>
                     </div>
                     <div className="flex-grow relative">
                         <img className="flex-grow" src={Card4} alt="" />
-                        <a className="absolute z-10 left-[6%] bottom-[6%] w-40 xl:w-40 h-12 xl:h-16 bg-white flex items-center justify-center font-bold text-xl text-slate-800" href="#">KIDS</a>
+                        <a className="absolute z-10 left-[6%] bottom-[6%] w-40 xl:w-40 h-12 xl:h-16 bg-white flex items-center justify-center font-bold text-xl text-slate-800" href="/shop/e/gomlek/11">SHIRT</a>
                     </div>
                 </div>
             </div>

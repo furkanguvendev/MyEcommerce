@@ -60,7 +60,7 @@ export const SingUp = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen font-montserrat bg-gray-100">
+    <div className="flex flex-col items-center min-h-screen font-montserrat bg-gray-100">
       <NavBar />
 
       <div

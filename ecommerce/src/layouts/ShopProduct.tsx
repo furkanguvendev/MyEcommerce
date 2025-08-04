@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import { ShopCard } from '../components/ShopCard';
-import { IoGrid } from "react-icons/io5";
-import { BsListCheck } from "react-icons/bs";
 import { Clients } from './Clients';
 import axiosInstance from '../api/axiosInstance';
 import { useDispatch, useSelector } from 'react-redux';
@@ -98,11 +96,6 @@ export const ShopProduct = () => {
         <div className='w-full flex flex-col items-center'>
             <div className='w-11/12 flex flex-col max-xl:gap-5 xl:flex-row xl:h-32 items-center justify-between mt-6'>
                 <p className='font-bold text-sm xl:text-xl text-neutral-500'>Showing {product.length} result</p>
-                <div className='flex flex-row items-center gap-5'>
-                    <p className='font-bold text-sm xl:text-xl text-neutral-500'>Views:</p>
-                    <button className='w-16 h-16 border-2 border-neutral-200 flex justify-center items-center'><IoGrid /></button>
-                    <button className='w-16 h-16 border-2 border-neutral-200 flex justify-center items-center'><BsListCheck /></button>
-                </div>
                 <div className='flex flex-col max-xl:items-center xl:flex-row gap-3'>
                     <input
                         type='text'
@@ -149,7 +142,7 @@ export const ShopProduct = () => {
 
             {/* {DESKTOP PAGINATION} */}
             <div className={`hidden xl:${
-                product.length === 0 ? "hidden" : "flex"
+                product.length === 0 ? "hidden" : "flex mb-8"
             }`}>
                 <button
                     onClick={handleFirst}
@@ -180,7 +173,7 @@ export const ShopProduct = () => {
             </div>
             {/* MOBILE PAGINATION */}
             <div className={`xl:hidden ${
-                product.length === 0 ? "hidden" : "flex flex-col items-center gap-4"
+                product.length === 0 ? "hidden" : "flex flex-col items-center gap-4 mb-8"
             }`}>
                 <p className='text-sm font-medium text-neutral-500'>
                     Page {pageSelected} of {totalPages}

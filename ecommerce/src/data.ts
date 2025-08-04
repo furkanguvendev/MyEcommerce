@@ -8,10 +8,10 @@ import Picture7 from "./assets/blogpic1.png";
 import Picture8 from "./assets/blogpic2.png";
 import Picture9 from "./assets/blogpic3.png";
 import Filter1 from "./assets/shopfilter1.jpg";
-import Filter2 from "./assets/shopfilter2.jpg";
+import Filter2 from "./assets/shopfilter2.jpeg";
 import Filter3 from "./assets/shopfilter3.jpg";
 import Filter4 from "./assets/shopfilter4.jpg";
-import Filter5 from "./assets/shopfilter5.jpg";
+import Filter5 from "./assets/shopfilter5.jpeg";
 import Product1 from "./assets/productcard1.png";
 import Product2 from "./assets/productcard2.png";
 import Product3 from "./assets/productcard3.png";
@@ -74,6 +74,13 @@ export type BlogCard = {
   interaction: string;
 }
 
+export type ShopFilter = {
+  url: string,
+  text: string,
+  description: string,
+  path: string,
+}
+
 export type BlogData = BlogCard[];
 
 export type Reviews = {
@@ -122,7 +129,7 @@ export type AllData = {
   heroCaroseul: CarouselData;
   productCarousel: CarouselData;
   blogCard: BlogData;
-  shopFilter: string[];
+  shopFilter: ShopFilter[];
   productCard: string[];
   productDetails: ProductDetail;
   detailproducts: DetailProduct[];
@@ -204,7 +211,13 @@ const data: AllData = {
       interaction: "125",
     },
   ],
-  shopFilter: [Filter1, Filter2, Filter3, Filter4, Filter5],
+  shopFilter: [
+  { url: Filter1, text: "TiŞORT", description: "Günlük Rahatlık", path: "/shop/k/tisort/1" },
+  { url: Filter2, text: "AYAKKABI", description: "Her Adımda", path: "/shop/k/ayakkabı/2" },
+  { url: Filter3, text: "CEKET", description: "Şıklık Kat", path: "/shop/k/ceket/3" },
+  { url: Filter4, text: "ELBİSE", description: "Zarif Dokunuş", path: "/shop/k/elbise/4" },
+  { url: Filter5, text: "GÖMLEK", description: "Klasik Tarz", path: "/shop/k/gomlek/5" }
+],
   productCard: [Product1, Product2, Product3, Product4, Product5, Product6, Product7, Product8, Product9, Product10, Product11, Product12],
   productDetails: {
       pictures: [Details1, Details2],

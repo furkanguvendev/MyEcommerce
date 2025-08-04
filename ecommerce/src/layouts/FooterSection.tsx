@@ -1,7 +1,12 @@
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import type { RootState } from "../store/store";
 
 export const FooterSection = () => {
+  const navigate = useNavigate();
+  const user = useSelector((state: RootState) => state.user.name);
   return (
     <footer className="w-full flex flex-col items-center">
       <div className="w-4/5 xl:w-11/12 mx-auto flex flex-col items-start gap-6 py-10">
@@ -49,7 +54,11 @@ export const FooterSection = () => {
               placeholder="Your Email"
               className="w-3/5 px-4 py-2 bg-gray-100 text-gray-600"
             />
-            <button className="w-2/5 bg-sky-500 text-white px-4 py-4">
+            <button onClick={()=>{
+              if(!user) {
+                navigate("/singup")
+              } 
+            }} disabled={user !== ""} className="w-2/5 bg-sky-500 text-white px-4 py-4">
               Subscribe
             </button>
           </div>
