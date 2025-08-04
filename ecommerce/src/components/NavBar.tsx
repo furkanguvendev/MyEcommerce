@@ -62,7 +62,7 @@ export const NavBar = () => {
                 Shop<IoIosArrowDown />
               </button>
               {isShopOpen && (
-                <div className="absolute top-full left-0 mt-9 text-xl w-[520px] bg-white p-6 flex gap-8 z-50 transition-all duration-300 ease-out opacity-0 scale-95 animate-fade-in">
+                <div className="absolute top-full left-0 mt-7 text-xl w-[520px] bg-white p-6 flex gap-8 z-50 transition-all duration-300 ease-out opacity-0 scale-95 animate-fade-in">
                   <div className="w-1/2 text-left flex flex-col gap-10">
                     <h4 className="font-bold text-slate-800 mb-2">Kadın</h4>
                     <ul className="space-y-1 font-bold text-neutral-500  flex flex-col gap-8">

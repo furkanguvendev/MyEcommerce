@@ -19,12 +19,12 @@ export const Contact = () => {
                         <p className="text-2xl xl:text-32 text-slate-800 font-bold">Phone ; +451 215 215 </p>
                         <p className="text-2xl xl:text-32 text-slate-800 font-bold">Fax : +451 215 215</p>
                     </div>
-                    <div className='flex flex-row gap-11'>
+                    <nav className='flex flex-row gap-11'>
                         <FaSquareXTwitter className='size-6 xl:size-10 text-slate-800'/>
                         <FaFacebook className='size-6 xl:size-10 text-slate-800'/>
                         <FaInstagram className='size-6 xl:size-10 text-slate-800'/>
-                        <FaLinkedin className='size-6 xl:size-10 text-slate-800'/>
-                    </div>
+                        <a href="https://www.linkedin.com/in/devfurkang/" target="_blank" rel="noopener noreferrer"><FaLinkedin className='size-6 xl:size-10 text-slate-800'/></a>
+                    </nav>
                 </div>
                 <img src={picture} className="w-1/2"/>
             </div>
@@ -36,27 +36,27 @@ export const Contact = () => {
                 <div className="w-3/4 flex flex-col xl:flex-row items-center justify-center gap-5">
                     <div className="contact-card">
                         <FiPhone  className="size-[72px] xl:size-24 text-sky-500"/>
-                        <div className="flex flex-col text-slate-800">
-                            <p className="contact-p">georgia.young@example.com</p>
-                            <p className="contact-p">georgia.young@ple.com</p>
+                        <div className="flex flex-col text-slate-800 items-center">
+                            <p className="contact-p">furkan.guven@example.com</p>
+                            <p className="contact-p">furkan.guven@ple.com</p>
                         </div>
                         <p className="contact-p text-slate-800">Get Support</p>
                         <button className="contact-button">Submit Request</button>
                     </div>
                     <div className="bg-slate-800 contact-card">
                         <TfiLocationPin  className="size-[72px] xl:size-24 text-sky-500"/>
-                        <div className="flex flex-col">
-                            <p className="contact-p text-white">georgia.young@example.com</p>
-                            <p className="contact-p text-white">georgia.young@ple.com</p>
+                        <div className="flex flex-col items-center">
+                            <p className="contact-p text-white">furkan.guven@example.com</p>
+                            <p className="contact-p text-white">furkan.guven@ple.com</p>
                         </div>
                         <p className="contact-p text-white">Get Support</p>
                         <button className="contact-button">Submit Request</button>
                     </div>
                     <div className="contact-card">
                         <FiMail  className="size-[72px] xl:size-24 text-sky-500"/>
-                        <div className="flex flex-col text-slate-800">
-                            <p className="contact-p">georgia.young@example.com</p>
-                            <p className="contact-p">georgia.young@ple.com</p>
+                        <div className="flex flex-col text-slate-800 items-center">
+                            <p className="contact-p">furkan.guven@example.com</p>
+                            <p className="contact-p">furkan.guven@ple.com</p>
                         </div>
                         <p className="contact-p text-slate-800">Get Support</p>
                         <button className="contact-button">Submit Request</button>
