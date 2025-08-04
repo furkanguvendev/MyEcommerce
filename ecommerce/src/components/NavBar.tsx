@@ -238,7 +238,7 @@ export const NavBar = () => {
               </div>
             )}
           </div>
-          <Link to="#"><FontAwesomeIcon icon={faHeart} /> {favorite.length}</Link>
+          <Link to="/favorite"><FontAwesomeIcon icon={faHeart} /> {favorite.length}</Link>
         </nav>
 
         {/* Mobile Right Nav */}
