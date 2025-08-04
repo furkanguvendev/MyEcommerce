@@ -43,8 +43,8 @@ export const ShopCard = ({product}: Props) => {
             <h3 className='font-bold text-base xl:text-xl text-slate-800'>{product.name}</h3>
             <p className='font-bold text-sm xl:text-lg text-neutral-500'>{truncateText(product.description, 3)}</p>
             <div className='flex flex-row gap-2'>
-                <p className='font-bold text-base xl:text-xl text-neutral-300'>${product.price}</p>
-                <p className='font-bold text-base xl:text-xl text-emerald-700'>${(product.price * (1 - product.stock/1000)).toFixed(2)}</p>
+                <p className='font-bold text-base xl:text-xl text-neutral-300'>₺{product.price}</p>
+                <p className='font-bold text-base xl:text-xl text-emerald-700'>₺{(product.price * (1 - product.stock/1000)).toFixed(2)}</p>
             </div>
             <div className='flex flex-row gap-2'>
                 <p className='w-4 xl:w-6 h-4 xl:h-6 rounded-full bg-sky-500'></p>

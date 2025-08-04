@@ -43,8 +43,8 @@ function toSlug(str: string): string {
             <h3 className="text-slate-800 text-base xl:text-2xl font-bold">{product.name}</h3>
             <p className="text-neutral-500 text-sm xl:text-xl font-bold">{truncateText(product.description, 2)}</p>
             <div className="flex flex-row gap-10">
-                <p className="text-sm xl:text-xl text-neutral-300 font-bold">${product.price}</p>
-                <p className="text-sm xl:text-xl text-emerald-700 font-bold">${(product.price * (1 - product.stock/1000)).toFixed(2)}</p>
+                <p className="text-sm xl:text-xl text-neutral-300 font-bold">₺{product.price}</p>
+                <p className="text-sm xl:text-xl text-emerald-700 font-bold">₺{(product.price * (1 - product.stock/1000)).toFixed(2)}</p>
             </div>
         </div>
     </button>

@@ -19,6 +19,7 @@ import { Order } from './pages/Order';
 import { Succesful } from './pages/Succesful';
 import { ToastContainer } from 'react-toastify';
 import { ScrollToTop } from './components/ScrollToTop';
+import { FavoriteItems } from './pages/FavoriteItems';
 
 function App() {
   const dispatch = useDispatch();
@@ -88,6 +89,7 @@ function App() {
         <Route path='/cart' element={<Cart />} />
         <Route path='/order' element={<Order />} />
         <Route path="/succesful" element={<Succesful/>} />
+        <Route path="/favorite" element={<FavoriteItems />} />
       </Routes>
     </>
   );

@@ -1,7 +1,7 @@
-import type { Product } from "../../types&enums/types";
+import type { Category, Product } from "../../types&enums/types";
 
 export type ProductState = {
-  categories: object[]; // Daha spesifik tip istersen bunu da detaylandırabiliriz
+  categories: Category[];
   productList: Product[];
   total: number;
   limit: number;
@@ -21,7 +21,7 @@ const initialState: ProductState = {
 };
 
 export type Action =
-  | { type: 'SET_CATEGORIES'; payload: object[] }
+  | { type: 'SET_CATEGORIES'; payload: Category[] }
   | { type: 'SET_PRODUCT_LIST'; payload: Product[] }
   | { type: 'SET_TOTAL'; payload: number }
   | { type: 'SET_FETCH_STATE'; payload: ProductState['fetchState'] }

@@ -89,7 +89,7 @@ export const ProductDetailsCard = ({product}: Props) => {
                     <RaitingStars raiting={raiting}/>
                     <p className="text-sm xl:text-xl text-neutral-500 font-bold">{product.sell_count} Reviews</p>
                 </div>
-                <h3 className="text-2xl xl:text-4xl text-slate-800 font-bold">${product.price}</h3>
+                <h3 className="text-2xl xl:text-4xl text-slate-800 font-bold">₺{product.price}</h3>
                 <p className="text-sm xl:text-xl text-neutral-500 font-bold">Availability : <span className="text-sky-500">{product.stock}</span></p>
                 <p className="text-sm xl:text-xl text-neutral-500 font-normal text-left">{product.description}</p>
                 <hr className="w-full"/>

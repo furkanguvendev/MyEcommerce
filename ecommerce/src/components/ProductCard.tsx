@@ -42,8 +42,8 @@ export const ProductCard = ({product}: Props) => {
         <h3 className='text-slate-800 font-bold text-xl mb-3'>{product.name}</h3>
         <p className='text-neutral-500 text-lg font-bold mb-5'>{truncateText(product.description,3)}</p>
         <div className='flex flex-row gap-2 mb-5'>
-            <p className='text-neutral-300 text-xl font-bold'>${product.price}</p>
-            <p className='text-emerald-700 text-xl font-bold'>${(product.price * (1 - product.stock/1000)).toFixed(2)}</p>
+            <p className='text-neutral-300 text-xl font-bold'>₺{product.price}</p>
+            <p className='text-emerald-700 text-xl font-bold'>₺{(product.price * (1 - product.stock/1000)).toFixed(2)}</p>
         </div>
         <div className='flex flex-row gap-2'>
             <p className='w-5 h-5 bg-sky-500 rounded-full'></p>
