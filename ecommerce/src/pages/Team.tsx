@@ -17,6 +17,7 @@ import { NavBar } from '../components/NavBar'
 import { FooterSection } from '../layouts/FooterSection'
 import { RiArrowRightWideFill } from "react-icons/ri";
 import { FaFacebook, FaInstagram, FaLinkedin, FaSquareXTwitter } from "react-icons/fa6";
+import { Link } from "react-router-dom"
 
 const images: string[] = [team1, team2, team3, team4, team5, team6, team7, team8, team9];
 
@@ -46,12 +47,12 @@ export const Team = () => {
         <div className='w-full flex flex-col items-center gap-14'>
             <h1 className='text-40 xl:text-[53.3px] text-slate-800 font-bold'>Start your <br className='xl:hidden'/>14 days free trial</h1>
             <p className='text-sm xl:text-lg text-neutral-500 font-normal'>Met minim Mollie non desert Alamo est sit <br className='xl:hidden'/>cliquey dolor <br className='max-xl:hidden'/>do met sent. RELIT official <br className='xl:hidden'/>consequent.</p>
-            <button className='w-[clamp(186px,25vw,252.67px)] h-[clamp(52px,10vw,69.33px)] bg-sky-500 rounded-md text-white text-sm xl:text-lg'>Try it free now</button>
+            <Link to={"/shop/k/tisort/1"} className='flex items-center justify-center w-[clamp(186px,25vw,252.67px)] h-[clamp(52px,10vw,69.33px)] bg-sky-500 rounded-md text-white text-sm xl:text-lg'>Try it free now</Link>
             <div className='flex flex-row gap-11'>
                 <FaSquareXTwitter className='size-6 xl:size-10 text-slate-800'/>
                 <FaFacebook className='size-6 xl:size-10 text-blue-900'/>
                 <FaInstagram className='size-6 xl:size-10 text-slate-800'/>
-                <FaLinkedin className='size-6 xl:size-10 text-sky-700'/>
+                <a href="https://www.linkedin.com/in/devfurkang/" target="_blank" rel="noopener noreferrer"><FaLinkedin className='size-6 xl:size-10 text-sky-700'/></a>
             </div>
         </div>
         <FooterSection />

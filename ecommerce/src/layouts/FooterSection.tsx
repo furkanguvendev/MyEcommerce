@@ -1,7 +1,7 @@
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import type { RootState } from "../store/store";
 
 export const FooterSection = () => {
@@ -20,31 +20,39 @@ export const FooterSection = () => {
       <div className="w-4/5 xl:w-11/12 mx-auto flex flex-col xl:flex-row items-start text-left gap-7 py-16">
         <div className="flex-[1]">
           <h3 className="footer-heading">Campany Info</h3>
-          <p className="footer-p">About Us</p>
-          <p className="footer-p">Carrier</p>
-          <p className="footer-p">We are Hiring</p>
-          <p className="footer-p">Blog</p>
+          <nav className="footer-nav">
+            <Link to={"/aboutus"} className="footer-p">About Us</Link>
+            <Link to={"/aboutus"} className="footer-p">Carrier</Link>
+            <Link to={"/aboutus"} className="footer-p">We are Hiring</Link>
+            <Link to={"/aboutus"} className="footer-p">Blog</Link>
+          </nav>
         </div>
         <div className="flex-[1]">
           <h3 className="footer-heading">Legal</h3>
-          <p className="footer-p">About Us</p>
-          <p className="footer-p">Carrier</p>
-          <p className="footer-p">We are Hiring</p>
-          <p className="footer-p">Blog</p>
+          <nav className="footer-nav">
+            <Link to={"/aboutus"} className="footer-p">About Us</Link>
+            <Link to={"/aboutus"} className="footer-p">Carrier</Link>
+            <Link to={"/aboutus"} className="footer-p">We are Hiring</Link>
+            <Link to={"/aboutus"} className="footer-p">Blog</Link>
+          </nav>
         </div>
         <div className="flex-[1]">
           <h3 className="footer-heading">Features</h3>
-          <p className="footer-p">Business Marketing</p>
-          <p className="footer-p">User Analytic</p>
-          <p className="footer-p">Live Chat</p>
-          <p className="footer-p">Unlimited Support</p>
+          <nav className="footer-nav">  
+            <Link to={"/aboutus"} className="footer-p">Business Marketing</Link>
+            <Link to={"/aboutus"} className="footer-p">User Analytic</Link>
+            <Link to={"/aboutus"} className="footer-p">Live Chat</Link>
+            <Link to={"/aboutus"} className="footer-p">Unlimited Support</Link>
+          </nav>
         </div>
         <div className="flex-[1]">
           <h3 className="footer-heading">Resources</h3>
-          <p className="footer-p">IOS & Android</p>
-          <p className="footer-p">Watch a Demo</p>
-          <p className="footer-p">Customers</p>
-          <p className="footer-p">API</p>
+          <nav className="footer-nav"> 
+            <Link to={"/aboutus"} className="footer-p">IOS & Android</Link>
+            <Link to={"/aboutus"} className="footer-p">Watch a Demo</Link>
+            <Link to={"/aboutus"} className="footer-p">Customers</Link>
+            <Link to={"/aboutus"} className="footer-p">API</Link>
+          </nav>
         </div>
         <div className="w-full flex-[2]">
           <h3 className="footer-heading">Get In Touch</h3>

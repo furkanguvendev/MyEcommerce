@@ -39,7 +39,7 @@ function toSlug(str: string): string {
   return (
     <button onClick={() => navigate(`/shop/${category?.gender}/${category?.code.replace(/^k:/, "")}/${category?.id}/${toSlug(product.name)}/${product.id}`)} className="flex flex-col items-center gap-5 shadow-md">
         <img className="w-full h-[clamp(400px,-10vw+480px,427px)] object-cover" src={product.images[0].url}/>
-        <div className="w-full flex flex-col p-10 items-start gap-4">
+        <div className="w-full flex flex-col p-10 items-center gap-4">
             <h3 className="text-slate-800 text-base xl:text-2xl font-bold">{product.name}</h3>
             <p className="text-neutral-500 text-sm xl:text-xl font-bold">{truncateText(product.description, 2)}</p>
             <div className="flex flex-row gap-10">

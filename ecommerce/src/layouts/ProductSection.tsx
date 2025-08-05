@@ -29,7 +29,7 @@ export const ProductSection = () => {
     <>
       <div className=" flex flex-col items-center py-20">
         <p className="text-neutral-500 text-2xl font-normal pb-4">Feature Products</p>
-        <h3 className="text-slate-800 text-3xl font-bold pb-4">BESTSELLER PRODUCTS</h3>
+        <h3 className="text-slate-800 text-3xl text-center font-bold pb-4">BESTSELLER PRODUCTS</h3>
         <p className="text-neutral-500 text-lg font-normal text-center pb-12 sm:pb-28">Problems trying to resolve the conflict between</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-36 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-64">
           {topProducts.map((product, index) => (

@@ -19,9 +19,9 @@ export const ProductDescrip = () => {
             )`
             }}/>
         <div className='w-11/12 xl:w-4/12 flex flex-row justify-between'>
-            <button className='text-neutral-500 text-sm xl:text-xl font-bold'>Description</button>
-            <button className='text-neutral-500 text-sm xl:text-xl font-bold'>Additional Information</button>
-            <button className='text-neutral-500 text-sm xl:text-xl font-bold'>Reviews <span className='text-emerald-700'>({data.productDetails.reviews.length})</span></button>
+            <button disabled className='text-neutral-500 text-sm xl:text-xl font-bold'>Description</button>
+            <button disabled className='text-neutral-500 text-sm xl:text-xl font-bold'>Additional Information</button>
+            <button disabled className='text-neutral-500 text-sm xl:text-xl font-bold'>Reviews <span className='text-emerald-700'>({data.productDetails.reviews.length})</span></button>
         </div>
         <hr className='w-11/12'/>
         <div className='w-11/12 flex flex-col xl:flex-row gap-12'>

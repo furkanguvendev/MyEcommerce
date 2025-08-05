@@ -1,7 +1,7 @@
 import React from "react";
 import { BiAlarm } from "react-icons/bi";
 import { AiOutlineAreaChart } from "react-icons/ai";
-import { SlArrowRight } from "react-icons/sl";
+import { FiBell } from "react-icons/fi";
 import { useState } from "react";
 
 type Card = {
@@ -64,7 +64,7 @@ export const BlogCard = ({card}: Props) => {
                 <p className="font-normal text-xs xl:text-base items-center flex flex-row gap-1"><BiAlarm className="text-sky-500 text-base xl:text-xl"/> {card.time}</p>
                 <p className="font-normal text-xs xl:text-base items-center flex flex-row gap-1"><AiOutlineAreaChart className="text-emerald-700 text-base xl:text-xl"/> {card.interaction} comments</p>
             </div>
-            <button className="text-neutral-500 text-sm xl:text-lg font-bold flex flex-row items-center gap-2">Learn More <SlArrowRight  className="text-sky-500"/></button>
+            <a href="https://www.linkedin.com/in/devfurkang/" target="_blank" rel="noopener noreferrer" className="text-neutral-500 text-sm xl:text-lg font-bold flex flex-row items-center gap-2">Stay Tuned <FiBell className="text-sky-500"/></a >
         </div>
     </div>
   )

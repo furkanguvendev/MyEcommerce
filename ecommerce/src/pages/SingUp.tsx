@@ -60,7 +60,7 @@ export const SingUp = () => {
   }
 
   return (
-    <div className="flex flex-col items-center min-h-screen font-montserrat bg-gray-100">
+    <div className="flex flex-col items-center min-h-screen font-montserrat">
       <NavBar />
 
       <div
@@ -69,7 +69,7 @@ export const SingUp = () => {
       >
         {/* Form Kartı */}
         <form
-          className={`bg-white shadow-lg rounded-lg p-6 
+          className={`bg-white shadow-2xl rounded-lg p-6 
             ${formMessage ? 'flex-1' : 'max-w-lg w-full'}`}
           onSubmit={handleSubmit(onSubmit)}
           noValidate

@@ -47,11 +47,11 @@ export const NavBar = () => {
   return (
     <>
       <div className='flex flex-row w-11/12 h-[10.9vh] justify-between items-center relative'>
-        <div className='xl:flex xl:flex-row xl:gap-36 xl:items-center'>
+        <div className='xl:flex xl:flex-row xl:gap-32 xl:items-center'>
           <Link to={"/"} className='hidden xl:flex text-3xl font-bold'>WEARIVA</Link >
           <Link to={"/"} className='xl:hidden text-2xl font-bold'>Weariva</Link >
 
-          <nav className='hidden xl:flex flex-row text-xl text-neutral-500 gap-5 relative'>
+          <nav className='hidden xl:flex flex-row text-xl text-neutral-500 gap-4 relative'>
             <Link to="/">Home</Link>
 
             <div className="relative">
@@ -117,7 +117,7 @@ export const NavBar = () => {
         </div>
 
         {/* Desktop Right Nav */}
-        <nav className='text-sky-500 text-xl hidden xl:flex flex-row gap-10'>
+        <nav className='text-sky-500 text-xl hidden xl:flex flex-row gap-7'>
           {user.name ? (
             <div className="relative">
               <button

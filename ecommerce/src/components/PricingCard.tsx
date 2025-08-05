@@ -1,4 +1,7 @@
 import { RiCheckFill } from 'react-icons/ri';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import type { RootState } from '../store/store';
 
 type Props = {
     IsOn : boolean;
@@ -10,6 +13,7 @@ type Props = {
 }
 
 export const PricingCard = ({IsOn, Data}: Props) => {
+    const user = useSelector((state: RootState) => state.user.name);
   return (
     <div className={`w-[clamp(335px,23vw,436px)] h-[clamp(724px,60vw,940px)] flex flex-col justify-center items-center rounded-xl gap-10 ${Data.type == "STANDARD" ? "bg-slate-800 text-white" : "bg-white border-2 border-sky-500"}`}>
         <h3 className={`text-2xl xl:text-3xl font-bold ${Data.type == "STANDARD" ? "text-white" : "text-slate-800"}`}>{Data.type}</h3>
@@ -28,7 +32,7 @@ export const PricingCard = ({IsOn, Data}: Props) => {
             <p className='pricingcard-p'><RiCheckFill className="text-white size-10 bg-gray-400 rounded-full"/> 1GB Cloud storage</p>
             <p className='pricingcard-p'><RiCheckFill className="text-white size-10 bg-gray-400 rounded-full"/> Email and community <br/>support</p>
         </div>
-        <button className='w-[clamp(248px,15vw,328px)] h-[clamp(52px,5vw,70px)] bg-sky-500 text-white rounded-md'>Try for free</button>
+        <Link to={user === "" ? "/singup" : "/shop/k/ayakkabı/2"} className='flex items-center justify-center w-[clamp(248px,15vw,328px)] h-[clamp(52px,5vw,70px)] bg-sky-500 text-white rounded-md'>Try for free</Link>
     </div>
   )
 }

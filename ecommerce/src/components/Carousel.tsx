@@ -74,7 +74,7 @@ export const Carousel: React.FC<Props> = ({
   }, []);
 
   return (
-    <div className="carousel font-montserrat w-full h-screen xl:h-full relative overflow-hidden">
+    <div className="carousel font-montserrat w-full h-screen  relative overflow-hidden">
       {/* Previous Button */}
       <button
         className="carousel-button prev z-50"

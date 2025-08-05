@@ -9,6 +9,10 @@ html, body, #root {
   height: 100%;
 }
 
+.footer-nav {
+  @apply flex flex-col;
+}
+
 .footer-heading {
   @apply text-slate-800 text-base font-bold pb-5;
 }
@@ -42,7 +46,7 @@ html, body, #root {
 }
 
 .contact-button {
-  @apply w-[clamp(161px,20vw,257px)] h-[clamp(44px,10vw,72px)] text-sky-500 font-bold text-sm xl:text-lg border-2 border-sky-500 rounded-lg xl:rounded-full bg-transparent;
+  @apply flex items-center justify-center w-[clamp(161px,20vw,257px)] h-[clamp(44px,10vw,72px)] text-sky-500 font-bold text-sm xl:text-lg border-2 border-sky-500 rounded-lg xl:rounded-full bg-transparent;
 }
 
 .contact-card {
