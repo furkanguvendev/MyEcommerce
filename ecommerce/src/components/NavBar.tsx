@@ -137,7 +137,7 @@ export const NavBar = () => {
                       className="w-10 h-10 rounded-full"
                     />
                     <div>
-                      <p className="font-semibold text-gray-800">{user.name}</p>
+                      <p className="font-semibold text-gray-800 text-center">{user.name}</p>
                       <p className="text-sm text-gray-500">{user.email}</p>
                     </div>
                   </div>
