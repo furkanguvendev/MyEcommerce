@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://workintech-fe-ecommerce.onrender.com", // kendi API base URL'ini buraya yaz
+  baseURL: "https://workintech-fe-ecommerce.onrender.com",
   headers: {
     "Content-Type": "application/json",
   },
